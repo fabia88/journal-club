@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="In-Process" Owner="NLM">
+        <PMID Version="1">28806736</PMID>
+        <DateCreated>
+            <Year>2017</Year>
+            <Month>08</Month>
+            <Day>14</Day>
+        </DateCreated>
+        <DateRevised>
+            <Year>2017</Year>
+            <Month>08</Month>
+            <Day>14</Day>
+        </DateRevised>
+        <Article PubModel="Electronic-eCollection">
+            <Journal>
+                <ISSN IssnType="Electronic">1932-6203</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>12</Volume>
+                    <Issue>8</Issue>
+                    <PubDate>
+                        <Year>2017</Year>
+                    </PubDate>
+                </JournalIssue>
+                <Title>PloS one</Title>
+                <ISOAbbreviation>PLoS ONE</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Unravelling the interplay of sphingolipids and TGF-β signaling in the human corneal stroma.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>e0182390</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.1371/journal.pone.0182390</ELocationID>
+            <Abstract>
+                <AbstractText Label="PURPOSE" NlmCategory="OBJECTIVE">To delineate the role of Sphingolipids (SPLs) in the human cornea and their cross-talks with transforming growth factor beta (TGF-β) in order to develop novel, non-invasive therapies.</AbstractText>
+                <AbstractText Label="METHODS" NlmCategory="METHODS">Human corneal fibroblasts (HCFs) were harvested from healthy donors, stimulated with Vitamin C to promote extracellular matrix assembly, treated with exogenous sphingosine-1-phosphate (S1P) or sphingosine kinase inhibitor 2 (SPHK I2) and isolated after 4 weeks for further analysis.</AbstractText>
+                <AbstractText Label="RESULTS" NlmCategory="RESULTS">Data showed that S1P led to a significant decrease in cellular migration where SPHK I2 just delayed it for 24h. Significant modulation of the sphingolipid pathway was also noted. Sphingosine kinase-1 (SphK1) was significantly downregulated upon exogenous stimulation with S1P at a concentration of 5μM and Sphingosine kinase-2 (SphK2) was also significantly downregulated at concentrations of 0.01μM, 0.1μM, and 5μM; whereas no effects were observed upon stimulation with SPHK I2. S1PR3 was significantly downregulated by 0.1μM and 5μM S1P and upregulated by 5μM and 10μM SPHK I2. Furthermore, both S1P and SPHK I2 regulated corneal fibrosis markers such as alpha-smooth muscle actin, collagen I, III, and V. We also investigated the interplay between two TGF-β isoforms and S1P/SPHK I2 treatments and found that TGF-β1 and TGF-β3 were both significantly upregulated with the 0.1μM S1P but were significantly downregulated with the 5μM S1P concentration. When TGF-β1 was compared directly to TGF-β3 expression, we observed that TGF-β3 was significantly downregulated compared to TGF-β1 in the 5μM concentration of S1P. No changes were observed upon SPHK I2 treatment.</AbstractText>
+                <AbstractText Label="CONCLUSION" NlmCategory="CONCLUSIONS">Our study delineates the role of sphingolipids in the human cornea and highlights their different activities based on the cell/tissue type.</AbstractText>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Nicholas</LastName>
+                    <ForeName>Sarah E</ForeName>
+                    <Initials>SE</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ophthalmology/ Dean McGee Eye Institute, University of Oklahoma Health Sciences Center, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Rowsey</LastName>
+                    <ForeName>Tyler G</ForeName>
+                    <Initials>TG</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ophthalmology/ Dean McGee Eye Institute, University of Oklahoma Health Sciences Center, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                    <AffiliationInfo>
+                        <Affiliation>University of Oklahoma College of Medicine, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Priyadarsini</LastName>
+                    <ForeName>Shrestha</ForeName>
+                    <Initials>S</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ophthalmology/ Dean McGee Eye Institute, University of Oklahoma Health Sciences Center, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Mandal</LastName>
+                    <ForeName>Nawajes A</ForeName>
+                    <Initials>NA</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ophthalmology /University of Tennessee Health Science Center, Memphis, Tennessee, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Anatomy and Neurobiology /University of Tennessee Health Science Center, Memphis, Tennessee, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Karamichos</LastName>
+                    <ForeName>Dimitrios</ForeName>
+                    <Initials>D</Initials>
+                    <Identifier Source="ORCID">http://orcid.org/0000-0002-8761-3824</Identifier>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ophthalmology/ Dean McGee Eye Institute, University of Oklahoma Health Sciences Center, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Cell Biology/ University of Oklahoma Health Sciences Center, Oklahoma City, Oklahoma, United States of America.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+            </PublicationTypeList>
+            <ArticleDate DateType="Electronic">
+                <Year>2017</Year>
+                <Month>08</Month>
+                <Day>14</Day>
+            </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>United States</Country>
+            <MedlineTA>PLoS One</MedlineTA>
+            <NlmUniqueID>101285081</NlmUniqueID>
+            <ISSNLinking>1932-6203</ISSNLinking>
+        </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="received">
+                <Year>2017</Year>
+                <Month>04</Month>
+                <Day>27</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2017</Year>
+                <Month>07</Month>
+                <Day>17</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2017</Year>
+                <Month>8</Month>
+                <Day>15</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2017</Year>
+                <Month>8</Month>
+                <Day>15</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2017</Year>
+                <Month>8</Month>
+                <Day>15</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>epublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">28806736</ArticleId>
+            <ArticleId IdType="doi">10.1371/journal.pone.0182390</ArticleId>
+            <ArticleId IdType="pii">PONE-D-17-16259</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+
+</PubmedArticleSet>
