@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
+        <PMID Version="1">19562783</PMID>
+        <DateCreated>
+            <Year>2009</Year>
+            <Month>08</Month>
+            <Day>11</Day>
+        </DateCreated>
+        <DateCompleted>
+            <Year>2009</Year>
+            <Month>09</Month>
+            <Day>11</Day>
+        </DateCompleted>
+        <DateRevised>
+            <Year>2009</Year>
+            <Month>08</Month>
+            <Day>11</Day>
+        </DateRevised>
+        <Article PubModel="Print">
+            <Journal>
+                <ISSN IssnType="Electronic">1521-3765</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>15</Volume>
+                    <Issue>32</Issue>
+                    <PubDate>
+                        <Year>2009</Year>
+                        <Month>Aug</Month>
+                        <Day>10</Day>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Chemistry (Weinheim an der Bergstrasse, Germany)</Title>
+                <ISOAbbreviation>Chemistry</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>A study of the influence of ionic liquids properties on the Kemp elimination reaction.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>7896-902</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.1002/chem.200900148</ELocationID>
+            <Abstract>
+                <AbstractText>The morpholino-induced elimination of 5-nitrobenzisoxazole into the relevant 2-cyano-4-nitrophenolate has been used as a sample reaction in order to investigate molecular properties of some room temperature ionic liquids. The kinetic study was carried out at 298 K by means of spectrophotometric measurements. Ionic liquids, which differ in both their cation and anion properties, were used as solvent systems. In particular, aliphatic (pyrrolidinium, piperidinium, and ammonium) and aromatic (imidazolium and pyridinium) ionic liquids were used. For aromatic cations, imidazolium ions having different hydrogen-bond donor ability or a different alkyl-chain length were taken into account. The anions chosen ([BF(4)(-)], [PF(6)(-)], [SbF(6)(-)], and [NTf(2)(-)]; where NTf(2) = bis(trifluoromethansulfonyl)imide) showed different shape, size, and coordination ability. Solvent parameters of all ionic liquids used were determined by using spectroscopic probes, such as 4-nitroaniline, N,N-diethyl-4-nitroaniline, Nile Red, and Reichardt's dye. Finally, in order to obtain information on the structural organization of the solvent systems, resonance light-scattering measurements were carried out. The collected data provide evidence that ionic liquids are solvent media which exhibit peculiar features, whose effects can be rationalized only considering all parameters affecting their three-dimensional structure.</AbstractText>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>D'Anna</LastName>
+                    <ForeName>Francesca</ForeName>
+                    <Initials>F</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Dipartimento di Chimica Organica E. Paternò, Università degli Studi di Palermo, Viale delle Scienze-Parco d'Orleans II, 90128 Palermo, Italy. fdanna@unipa.it</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>La Marca</LastName>
+                    <ForeName>Sandra</ForeName>
+                    <Initials>S</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Lo Meo</LastName>
+                    <ForeName>Paolo</ForeName>
+                    <Initials>P</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Noto</LastName>
+                    <ForeName>Renato</ForeName>
+                    <Initials>R</Initials>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+            </PublicationTypeList>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>Germany</Country>
+            <MedlineTA>Chemistry</MedlineTA>
+            <NlmUniqueID>9513783</NlmUniqueID>
+            <ISSNLinking>0947-6539</ISSNLinking>
+        </MedlineJournalInfo>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2009</Year>
+                <Month>6</Month>
+                <Day>30</Day>
+                <Hour>9</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2009</Year>
+                <Month>6</Month>
+                <Day>30</Day>
+                <Hour>9</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2009</Year>
+                <Month>6</Month>
+                <Day>30</Day>
+                <Hour>9</Hour>
+                <Minute>1</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">19562783</ArticleId>
+            <ArticleId IdType="doi">10.1002/chem.200900148</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+
+</PubmedArticleSet>
