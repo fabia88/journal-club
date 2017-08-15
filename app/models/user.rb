@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :participants
-  has_many :authors
+  has_one :author
+  has_many :papers, through: :author
   has_many :labs
   has_many :posts
   has_many :reviews
@@ -10,5 +11,4 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
 end

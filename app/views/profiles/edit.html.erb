@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+      <h2>Edit User Profile</h2>
+
+      <div class="form-group">
+        <%= simple_form_for(@user) do |f| %>
+        <%= f.input :first_name, class: "form-control" %>
+        <%= f.input :last_name, class: "form-control" %>
+        <%= f.input :email, class: "form-control" %>
+        <%= f.input :password, class: "form-control" %>
+        <%= f.input :education, class: "form-control" %>
+        <%= f.input :job_description, class: "form-control" %>
+        <%= f.input :research_interests, class: "form-control"%>
+        <%= f.input :search_keywords, class: "form-control"%>
+        <%= f.input :avatar_url, class: "form-control"%>
+        <%= f.submit class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><%= link_to "Back to profile", user_path(@user.id), class: "btn btn-primary"%></li>
+  <li><%= link_to "Back to user index", users_path, class: "btn btn-primary"%></li>
+  <li><%= link_to "Back to home", root_path, class: "btn btn-primary"%></li>
+</ul>
