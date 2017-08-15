@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814161958) do
+ActiveRecord::Schema.define(version: 20170815092750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 20170814161958) do
   create_table "authors", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "paper_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["paper_id"], name: "index_authors_on_paper_id", using: :btree
     t.index ["user_id"], name: "index_authors_on_user_id", using: :btree
   end
 
@@ -32,6 +30,11 @@ ActiveRecord::Schema.define(version: 20170814161958) do
     t.boolean  "archived"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "paper_authors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "papers", force: :cascade do |t|
@@ -49,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170814161958) do
     t.integer  "lab_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
     t.index ["lab_id"], name: "index_participants_on_lab_id", using: :btree
     t.index ["user_id"], name: "index_participants_on_user_id", using: :btree
   end
@@ -63,16 +67,6 @@ ActiveRecord::Schema.define(version: 20170814161958) do
     t.index ["lab_id"], name: "index_posts_on_lab_id", using: :btree
     t.index ["paper_id"], name: "index_posts_on_paper_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
-  end
-
-  create_table "requests", force: :cascade do |t|
-    t.string   "status"
-    t.integer  "user_id"
-    t.integer  "lab_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["lab_id"], name: "index_requests_on_lab_id", using: :btree
-    t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -98,19 +92,24 @@ ActiveRecord::Schema.define(version: 20170814161958) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "education"
+    t.string   "job_description"
+    t.string   "research_interests"
+    t.string   "avatar_url"
+    t.text     "search_keywords",                                  array: true
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "authors", "papers"
   add_foreign_key "authors", "users"
   add_foreign_key "participants", "labs"
   add_foreign_key "participants", "users"
   add_foreign_key "posts", "labs"
   add_foreign_key "posts", "papers"
   add_foreign_key "posts", "users"
-  add_foreign_key "requests", "labs"
-  add_foreign_key "requests", "users"
   add_foreign_key "reviews", "papers"
   add_foreign_key "reviews", "users"
 end
