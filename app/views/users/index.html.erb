@@ -1,0 +1,21 @@
+<h1 class="text-center">User Index</h1>
+
+<div class="container">
+  <div class="row">
+
+    <% @users.each do |user| %>
+    <div class="col-xs-12 col-sm-6">
+    <!-- <div class="ADD CARD CLASS"> -->
+        <p><%= user.first_name + user.last_name %></p>
+        <p>€<%= user.job_description %></p>
+        <p>€<%= user.research_interests %></p>
+      <%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>
+      </div>
+      <%#= link_to "", user_path(user.id), class: "card-link"%>
+    </div>
+    <% end %>
+  </div>
+
+<div class="container">
+  <%= link_to "Back to home", root_path, class: "btn btn-primary"%>
+</div>
