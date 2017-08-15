@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815101542) do
+ActiveRecord::Schema.define(version: 20170815130229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170815101542) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "creator_id"
+    t.index ["creator_id"], name: "index_labs_on_creator_id", using: :btree
   end
 
   create_table "paper_authors", force: :cascade do |t|
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170815101542) do
     t.datetime "updated_at", null: false
     t.integer  "paper_id"
     t.integer  "author_id"
+    t.index ["author_id"], name: "index_paper_authors_on_author_id", using: :btree
+    t.index ["paper_id"], name: "index_paper_authors_on_paper_id", using: :btree
   end
 
   create_table "papers", force: :cascade do |t|
