@@ -2,10 +2,10 @@ require_relative '../app/services/import_papers_service.rb'
 # my_info = "&tool=journal-link&email=rebekka.haley@gmail.com"
 
 # puts "Destroying previous records..."
-# User.destroy_all
-# Paper.destroy_all
-# Author.destroy_all
-# PaperAuthor.destroy_all
+User.destroy_all
+Paper.destroy_all
+Author.destroy_all
+PaperAuthor.destroy_all
 
 #   users
 puts "Seeding users..."

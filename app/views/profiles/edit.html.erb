@@ -6,16 +6,18 @@
       <h2>Edit User Profile</h2>
 
       <div class="form-group">
-        <%= simple_form_for(@user) do |f| %>
+        <%= simple_form_for(@user, url: profile_path) do |f| %>
         <%= f.input :first_name, class: "form-control" %>
         <%= f.input :last_name, class: "form-control" %>
         <%= f.input :email, class: "form-control" %>
-        <%= f.input :password, class: "form-control" %>
+        <%= f.input :password, autocomplete: "off", hint: "Leave it blank if you don't want to change it", required: false %>
+        <%= f.input :password_confirmation, required: false %>
         <%= f.input :education, class: "form-control" %>
         <%= f.input :job_description, class: "form-control" %>
         <%= f.input :research_interests, class: "form-control"%>
         <%= f.input :search_keywords, class: "form-control"%>
-        <%= f.input :avatar_url, class: "form-control"%>
+        <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
+        <%#= f.input :avatar_url, class: "form-control"%>
         <%= f.submit class: "btn btn-primary" %>
         <% end %>
       </div>
