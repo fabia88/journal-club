@@ -5,7 +5,7 @@
     <h3><%= paper.title %></h3>
     <ul class="list-inline list-unstyled">
     <% paper.authors.each do |author| %>
-      <li><%= author %></li>
+      <li><%= author.name %></li>
     <% end %>
     </ul>
     <p><%= paper.date %></p>

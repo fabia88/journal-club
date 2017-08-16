@@ -1,13 +1,13 @@
 require_relative '../app/services/import_papers_service.rb'
 # my_info = "&tool=journal-link&email=rebekka.haley@gmail.com"
 
-# puts "Destroying previous records..."
-# User.destroy_all
-# Paper.destroy_all
-# Author.destroy_all
-# PaperAuthor.destroy_all
+puts "Destroying previous records..."
+User.destroy_all
+Paper.destroy_all
+Author.destroy_all
+PaperAuthor.destroy_all
 
-#   users
+  # users
 puts "Seeding users..."
 emails = ["anna@example.com",
   "brie@example.com",
@@ -33,7 +33,7 @@ end
 puts "Seeding papers..."
 paper = Paper.new(ImportPapersService.new.call_paper_params)
 paper.abstract = ImportPapersService.new.call_paper_abstract
-paper.save
+paper.save!
 
 #   authors
 puts "Seeding authors and paper authors..."
@@ -41,13 +41,13 @@ authors = ImportPapersService.new.call_paper_authors
 authors.each_with_index do |a, i|
   author = Author.new(name: a["name"])
   author.user = User.all[i]
-  author.save
+  author.save!
   p author
   # #   paper_authors
   paper_author = PaperAuthor.new()
   paper_author.paper = paper
   paper_author.author = author
-  paper_author.save
+  paper_author.save!
   p paper_author
   p "----------------------"
 end
