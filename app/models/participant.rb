@@ -1,5 +1,5 @@
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :lab
-  validates :status, presence: true
+  validates :user, :lab, :status, presence: true
 end

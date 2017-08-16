@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-6">
+      <h3>Lab participants</h3>
+      <%= link_to "Add participant", "#" %>
+      <% @lab.participants.each do |participant| %>
+
+      <div class="product">
+        <img src="http://lorempixel.com/100/100/abstract/1/" alt="kudoz" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= participant.user.first_name %> <%= participant.user.last_name %></h3>
+          <p><%= participant.user.job_description %></p>
+          <p><%= participant.user.education %></p>
+          <p>Interests: <%= participant.user.research_interests %></p>
+          <p>Status: <%= participant.status %></p>
+        </div>
+        <ul class="list-inline product-controls hidden-sm hidden-xs">
+          <% participant_lab = participant.user.joined_labs.first %>
+          <% if current_user == participant.user && participant_lab == @lab && participant.status == "pending" %>
+            <%= link_to "Accept", "#" %>
+            <%= link_to "Deny", "#" %>
+          <% elsif participant_lab == @lab %>
+            <%= link_to "Cancel", "#" %>
+          <% end %>
+        </ul>
+      </div>
+
+      <% end %>
+    </div>
+
+    <div class="col-xs-6">
+      <!-- Lab banner -->
+      <h2><%= @lab.name %></h2>
+      <div class="banner banner-40vh" style="background-image: url('https://static.pexels.com/photos/267885/pexels-photo-267885.jpeg');">
+      </div>
+      <!-- Lab links -->
+      <div>
+        <%= link_to "Edit lab", "#" %>
+        <%= link_to "Archive lab", "#" %>
+      </div>
+      <!-- Lab description -->
+      <div>
+        <h3>Description</h3>
+        <p><%= @lab.description %></p>
+        Updated at: <%= @lab.updated_at.to_formatted_s(:short) %>
+        Created at: <%= @lab.created_at.to_formatted_s(:short) %>
+      </div>
+      <!-- Index posts -->
+      <div>
+        <h3>Lab posts</h3>
+        <div class="message">
+          <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+          <div class="message-name">
+            <h3>Gab Dehan</h3>
+            <p>10/07/17</p>
+          </div>
+          <div class="message-body">
+            <p><strong>I am not sure yet!</strong></p>
+            <p>
+              I am not sure yet! I might be in Shanghai at this moment... Can I tell you later?
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Create post -->
+      <div>
+        <h3>New posts</h3>
+      </div>
+
+    </div>
+
+  </div>
+</div>

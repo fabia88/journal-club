@@ -1,8 +1,12 @@
 class User < ApplicationRecord
+  has_many :created_labs, class_name: "Lab", foreign_key: :creator_id
+
   has_many :participants
+  has_many :joined_labs, through: :participants, source: :lab
+
   has_one :author
   has_many :papers, through: :author
-  has_many :labs
+
   has_many :posts
   has_many :reviews
 
