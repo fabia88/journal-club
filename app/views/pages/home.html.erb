@@ -1,2 +1,79 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://static.pexels.com/photos/371954/pexels-photo-371954.jpeg');">
+  <div class="banner-content">
+
+    <% if current_user %>
+    <h1>Welcome back, <%= current_user.first_name %>.</h1>
+    <%= link_to "Browse your feed", "#", class: "btn btn-primary btn-lg" %>
+
+    <% else%>
+    <h1>Journal Link</h1>
+    <p>Keep up with the latest news in your field</p>
+    <!-- Sign up modal button -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
+      Sign up
+    </button>
+
+    <% end %>
+
+  </div>
+</div>
+
+<!-- Sign up modal body -->
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signUpModalLabel">Sign up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Devise - define local variables -->
+        <% resource_name = @user %>
+        <% devise_mapping = Devise.mappings[:user] %>
+
+        <!-- Sign up -->
+        <%= simple_form_for(@user, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :first_name, required: true, autofocus: true %>
+          <%= f.input :last_name, required: true, autofocus: true %>
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, required: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+        <% end %>
+
+        <!-- from views/devise/shared/links -->
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        <% end -%>
+
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+        <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+        <% end -%>
+
+        <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+        <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+        <% end -%>
+
+        <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <% end -%>
+        <% end -%>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
