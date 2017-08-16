@@ -1,10 +1,12 @@
+<h1 class="text-center">User Profile</h1>
+
 <div class="container padded">
   <div class="row">
     <div class="col-xs-8">
       <div class="col-xs-4">
         <!-- <div class="ADD CLASS"> -->
         <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-        <%= cl_image_tag @user.avatar, width: 300, height: 300, gravity: :face, crop: :lfill, class: "avatar-square-massive" %>
+        <%#= cl_image_tag @user.avatar, width: 300, height: 300, gravity: :face, crop: :lfill, class: "avatar-square-massive" %>
         <p><%= @user.email %></p>
         <p><%= @user.education %></p>
         <p><%= @user.job_description %></p>
