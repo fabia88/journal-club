@@ -1,6 +1,10 @@
 class PapersController < ApplicationController
   def index
     @papers = Paper.all
+
+    if params[:search].present?
+      @papers = @papers.select{|paper| paper.title.downcase.include?(params[:search].downcase)}
+    end
   end
 
   def show
