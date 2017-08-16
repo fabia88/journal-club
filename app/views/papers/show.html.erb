@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card">
+    <h1 class="text">Title: <%= @paper.title %></h1>
+    <h4>Authors:</h4>
+    <% @paper.authors.each do |author| %>
+    <p><%= author.name %></p>
+    <% end %>
+    <h4>Date: <%= @paper.date %></h4>
+    <h4>Abstract:</h4>
+    <p><%= @paper.abstract %></p>
+    <%= link_to "Go to paper source", @paper.source %>
+    <%= link_to "Share with lab", new_paper_post_path(@paper)%>
+  </div>
+  <div class="reviews">
+    <% @paper.reviews.each do |review|%>
+    <div class="card">
+      <p><%= review.user.first_name %> <%= review.user.last_name %></p>
+      <p><%= review.content %></p>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <%= simple_form_for([@paper, @review]) do |f|%>
+        <%= f.input :content, class: "form-control" %>
+        <%= f.button :submit, "Publish", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
