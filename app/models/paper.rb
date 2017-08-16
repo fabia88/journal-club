@@ -3,5 +3,5 @@ class Paper < ApplicationRecord
   has_many :paper_authors
   has_many :authors, through: :paper_authors
   has_many :posts
-  validates :title, :abstract, :source, :reference, presence: true
+  validates :title, :source, :reference, presence: true
 end
