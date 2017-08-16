@@ -8,16 +8,14 @@
         <p><%= user.first_name + " " + user.last_name %></p>
         <p><%= user.job_description %></p>
         <p><%= user.research_interests %></p>
-        <%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>
         <%= link_to "back", user_path(user.id), class: "card-link"%>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
-
-<!-- make cards clickable -->
 
 <div class="container text-center">
-  <%= link_to "Back to home", root_path, class: "btn btn-primary"%>
+  <%= link_to "Home", root_path, class: "btn btn-primary"%>
 </div>
+<%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>
