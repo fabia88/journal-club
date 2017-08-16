@@ -1,7 +1,7 @@
 class ImportPapersService
   def call_id
-    # esearch to find id => json
-    idpath = 'practice_ids.fcgi'
+    # esearch to find papers_id => json
+    idpath = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&reldate=14&datetype=pdat&retmax=100&retmode=json&tool=journal_link&email=fabia.moroni@gmail.com"
     serialized_ids = File.read(Rails.root.join(idpath))
     result = JSON.parse(serialized_ids)
     result["esearchresult"]["idlist"]
