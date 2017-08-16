@@ -5,5 +5,6 @@ class PapersController < ApplicationController
 
   def show
     @paper = Paper.find(params[:id])
+    @review = Review.new
   end
 end

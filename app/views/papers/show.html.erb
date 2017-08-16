@@ -3,7 +3,7 @@
     <h1 class="text">Title: <%= @paper.title %></h1>
     <h4>Authors:</h4>
     <% @paper.authors.each do |author| %>
-    <p><%= author %></p>
+    <p><%= author.name %></p>
     <% end %>
     <h4>Date: <%= @paper.date %></h4>
     <h4>Abstract:</h4>
@@ -18,5 +18,11 @@
       <p><%= review.content %></p>
     </div>
     <% end %>
+    <div class="form-group">
+      <%= simple_form_for([@paper, @review]) do |f|%>
+        <%= f.input :content, class: "form-control" %>
+        <%= f.button :submit, "Publish", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>
