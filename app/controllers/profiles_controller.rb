@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to edit_profile_path
     else
       render :edit
     end
@@ -23,8 +23,8 @@ class ProfilesController < ApplicationController
       :education,
       :job_description,
       :research_interests,
-      :search_keywords,
-      :avatar_url
+      :avatar_url,
+      search_keywords: []
       )
   end
 end

@@ -16,18 +16,18 @@
         <h3>Research Interests</h3>
         <p><%= @user.research_interests %></p>
         <h3>Publications</h3>
-        <% if current_user == @user.author%>
-        <%= current_user.papers %>
-        <% end %>
-        <div class="card users-show-card">
+        <%# if current_user == @user.author%>
+        <%#= current_user.papers %>
+        <%# end %>
+<!--         <div class="card users-show-card">
           <div class="ADD CLASS">
-            <%= link_to "View Publication", paper_path, class: "btn btn-primary btn-sm" %>
+            <%#= link_to "View Publication", paper_path, class: "btn btn-primary btn-sm" %>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   <h3>Lab</h3>
-  <%=  %>
+    <%= link_to "Go to Lab", lab_path, class: "btn btn-primary" %>
 </div>
   </div>
 </div>
