@@ -12,6 +12,18 @@ class LabsController < ApplicationController
   end
 
   def create
+    @lab = Lab.new(lab_params)
+    @lab.creator = current_user
+    if @lab.save
+      @participant = Participant.new(status: "accepted")
+      @participant.user = current_user
+      @participant.lab = @lab
+      @participant.save
+      redirect_to lab_path(@lab)
+      flash[:notice] = "Lab successfully created"
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -21,6 +33,16 @@ class LabsController < ApplicationController
   end
 
   def archive
+    @lab = Lab.find(params[:id])
+    @lab.archived = true
+    @lab.save
+    redirect_to user_path(current_user)
+    flash[:notice] = "Lab successfully archived"
+  end
+
+  private
+  def lab_params
+    params.require(:lab).permit(:name, :description)
   end
 end
 

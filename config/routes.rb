@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
   resource :profile, only: [:edit, :update]
   resources :labs, only: [:show, :new, :create, :edit, :update] do
-    patch :archive
+    member do
+      patch :archive
+    end
   end
 
   resources :participants, only: [:new, :create] do

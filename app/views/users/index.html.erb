@@ -1,21 +1,25 @@
-<h1 class="text-center">User Index</h1>
-
 <div class="container">
   <div class="row">
+
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h2>User Index</h2>
+    </div>
+
     <% @users.each do |user| %>
-    <div class="text-center">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="card">
-        <p><%= user.first_name + " " + user.last_name %></p>
-        <p><%= user.job_description %></p>
-        <p><%= user.research_interests %></p>
-        <%= link_to "back", user_path(user.id), class: "card-link"%>
+        <div class="card-description">
+          <h3><%= user.first_name + " " + user.last_name %></h3>
+          <p><%= user.email %></p>
+          <p><%= user.job_description %></p>
+          <p><%= user.research_interests %></p>
+          <%= link_to "", user_path(user.id), class: "card-link"%>
+        </div>
       </div>
     </div>
     <% end %>
+
+    <%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>
+
   </div>
 </div>
-
-<div class="container text-center">
-  <%= link_to "Home", root_path, class: "btn btn-primary"%>
-</div>
-<%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>

@@ -7,21 +7,21 @@
       <% @lab.participants.each do |participant| %>
 
       <div class="product">
-        <img src="http://lorempixel.com/100/100/abstract/1/" alt="kudoz" class="product-image hidden-xs">
+        <img src="http://lorempixel.com/100/100/abstract/1/" alt="lorempixel" class="product-image hidden-xs">
         <div class='product-body'>
           <h3><%= participant.user.first_name %> <%= participant.user.last_name %></h3>
+          <p>Status: <strong><%= participant.status %></strong></p>
           <p><%= participant.user.job_description %></p>
           <p><%= participant.user.education %></p>
-          <p>Interests: <%= participant.user.research_interests %></p>
-          <p>Status: <%= participant.status %></p>
+          <%= link_to "View profile", user_path(participant.user) %>
         </div>
         <ul class="list-inline product-controls hidden-sm hidden-xs">
           <% participant_lab = participant.user.joined_labs.first %>
           <% if current_user == participant.user && participant_lab == @lab && participant.status == "pending" %>
-            <%= link_to "Accept", "#" %>
-            <%= link_to "Deny", "#" %>
+          <%= link_to "Accept", "#" %>
+          <%= link_to "Deny", "#" %>
           <% elsif participant_lab == @lab %>
-            <%= link_to "Cancel", "#" %>
+          <%= link_to "Cancel", "#" %>
           <% end %>
         </ul>
       </div>
@@ -37,35 +37,37 @@
       <!-- Lab links -->
       <div>
         <%= link_to "Edit lab", "#" %>
-        <%= link_to "Archive lab", "#" %>
+        <% if current_user.created_labs.first == @lab%>
+        <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
+        <% end %>
       </div>
       <!-- Lab description -->
       <div>
         <h3>Description</h3>
         <p><%= @lab.description %></p>
-        Updated at: <%= @lab.updated_at.to_formatted_s(:short) %>
-        Created at: <%= @lab.created_at.to_formatted_s(:short) %>
+        <h4>
+          Last updated: <%= @lab.updated_at.to_formatted_s(:short) %> | Created at: <%= @lab.created_at.to_formatted_s(:short) %>
+        </h4>
       </div>
       <!-- Index posts -->
       <div>
-        <h3>Lab posts</h3>
+        <h3>Posts</h3>
         <div class="message">
-          <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+          <img class="avatar-large hidden-xs" src="http://lorempixel.com/100/100/abstract/1/">
           <div class="message-name">
-            <h3>Gab Dehan</h3>
+            <h3>Firstname Lastname</h3>
             <p>10/07/17</p>
           </div>
           <div class="message-body">
-            <p><strong>I am not sure yet!</strong></p>
             <p>
-              I am not sure yet! I might be in Shanghai at this moment... Can I tell you later?
+              I am PLACEHOLDER TEXT! I might be in Shanghai at this moment... Can I tell you later?
             </p>
           </div>
         </div>
       </div>
       <!-- Create post -->
       <div>
-        <h3>New posts</h3>
+        <h3>New post</h3>
       </div>
 
     </div>
