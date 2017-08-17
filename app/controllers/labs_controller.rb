@@ -27,9 +27,16 @@ class LabsController < ApplicationController
   end
 
   def edit
+    @lab = Lab.find(params[:id])
   end
 
   def update
+    @lab = Lab.find(params[:id])
+    if @lab.update(lab_params)
+      redirect_to lab_path(@lab)
+    else
+      render :edit
+    end
   end
 
   def archive
