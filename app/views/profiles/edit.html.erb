@@ -13,23 +13,18 @@
         <%= f.input :education, class: "form-control" %>
         <%= f.input :research_interests, class: "form-control"%>
 
+
+
         <% if @user.search_keywords %>
         <div id="search-keywords">
           <% @user.search_keywords.each do |search_keyword| %>
           <input type="text" name="user[search_keywords][]" value="<%= search_keyword %>">
           <% end %>
         </div>
+        <button id="add-keyword">Add keyword</button>
         <% end %>
 
-        <button>Add keyword</button>
-
-        <!-- need JS to
-        add an 'add keyword' button
-        add'remove keyword' button
-        stay on page -->
-
         <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
-        <%#= f.input :avatar_url, class: "form-control"%>
         <%= f.submit %>
         <% end %>
       </div>
@@ -44,3 +39,14 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+<script>
+  $(document).ready(function(){
+    $("#add-keyword").click(function(){
+      input_html = '<input type="text" name="user[search_keywords][]">'
+      $("#search-keywords").append(input_html);
+    });
+  });
+</script>
+<% end %>
