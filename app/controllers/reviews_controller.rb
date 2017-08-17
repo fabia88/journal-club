@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     @review.paper = @paper
     if @review.save
       redirect_to paper_path(@paper)
-      flash[:notice] = "Review successfully created"
+      flash[:notice] = "Review successfully created."
     else
       render 'papers/show'
     end

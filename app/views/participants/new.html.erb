@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+      <h2>New Participant</h2>
+
+      <%= simple_form_for @participant, url: lab_participants_path do |f| %>
+      <%= f.input :email, autofocus: true %>
+      <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<!--
+lab_participants      POST   /labs/:lab_id/participants(.:format)    participants#create
+
+new_lab_participant   GET    /labs/:lab_id/participants/new(.:format)  participants#new -->

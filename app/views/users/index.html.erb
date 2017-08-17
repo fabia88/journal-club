@@ -2,13 +2,16 @@
   <div class="row">
 
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <h2>User Index</h2>
+      <h2>Users</h2>
     </div>
 
     <% @users.each do |user| %>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <div class="card">
-        <div class="card-description">
+      <div class="product">
+        <div>
+          <%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "product-image hidden-xs" %>
+        </div>
+        <div class='product-body'>
           <h3><%= user.first_name + " " + user.last_name %></h3>
           <p><%= user.email %></p>
           <p><%= user.job_description %></p>
@@ -18,8 +21,6 @@
       </div>
     </div>
     <% end %>
-
-    <%#= cl_image_tag user.avatar_url, width: 40, height: 40, gravity: :face, crop: :thumb, class: "card-user" %>
 
   </div>
 </div>
