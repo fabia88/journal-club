@@ -1,24 +1,40 @@
-<h1 class="text-center">User Profile</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>User Profile</h2>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="row">
+
     <div class="col-xs-8">
-      <div class="col-xs-4">
-        <div class="avatar">
+      <div class="product">
+        <div>
+          <img src="http://lorempixel.com/100/100/abstract/1/" alt="lorempixel" class="product-image hidden-xs">
+        </div>
+        <div class='product-body'>
           <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-          <%#= cl_image_tag @user.avatar, width: 300, height: 300, gravity: :face, crop: :lfill, class: "avatar-square-massive" %>
           <p><%= @user.email %></p>
-          <p><%= @user.education %></p>
           <p><%= @user.job_description %></p>
-          <% if current_user == @user %>
-          <%= link_to "Edit profile", edit_profile_path, class: "btn btn-primary" %>
-          <% end %>
-          <h3>Research Interests</h3>
-          <p><%= @user.research_interests %></p>
-          <h3>Publications</h3>
-          <%# if current_user == @user.author%>
-          <%#= current_user.papers %>
-          <%# end %>
+          <p><%= @user.education %></p>
+          <div>
+            <% if current_user == @user %>
+            <%= link_to "Edit profile", edit_profile_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>Research Interests</h3>
+        <p><%= @user.research_interests %></p>
+      </div>
+      <div>
+        <h3>Publications</h3>
+        <%# if current_user == @user.author%>
+        <%#= current_user.papers %>
+        <%# end %>
 <!--         <div class="card users-show-card">
           <div class="ADD CLASS">
             <%#= link_to "View Publication", paper_path, class: "btn btn-primary btn-sm" %>
@@ -26,16 +42,32 @@
         </div> -->
       </div>
     </div>
-  </div>
-  <h3>Lab</h3>
-  <%= link_to "Go to Lab", lab_path, class: "btn btn-primary" %>
-</div>
-</div>
-</div>
-<div>
 
-  <!-- <div class="ADD CLASS"> -->
+    <div class="col-xs-4">
+      <div>
+        <h3>Lab</h3>
+        <% if @user == current_user && !@user.joined_labs.first %>
+        <p>Looks like you aren't in a lab.</p>
+        <p>Would you like to create one?</p>
+        <%= link_to "Create a Lab", new_lab_path, class: "btn btn-primary" %>
+        <% elsif !@user.joined_labs.first %>
+        <p>Looks like <%= @user.first_name %> isn't in a lab.</p>
+        <% elsif @user.joined_labs.first.archived? %>
+        <p><%= @user.joined_labs.first.name %> has been archived.</p>
+        <% elsif @user.joined_labs.first %>
+        <p>Lab: <%= @user.joined_labs.first.name %></p>
+        <p>Description: <%= @user.joined_labs.first.description %></p>
+        <%= link_to "Go to Lab", lab_path(@user.joined_labs.first), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div>
   <ul class="list-unstyled list-inline text-center">
     <li><%= link_to "Back to user index", users_path, class: "btn btn-primary"%></li>
     <li><%= link_to "Back to home", root_path, class: "btn btn-primary"%></li>
   </ul>
+</div>

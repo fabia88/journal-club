@@ -2,12 +2,14 @@
   <div class="banner-content">
 
     <% if current_user %>
-    <h1>Welcome back, <%= current_user.first_name %>.</h1>
-    <%= link_to "Browse your feed", "#", class: "btn btn-primary btn-lg" %>
+      <h1>Welcome back, <%= current_user.first_name %>.</h1>
+      <%= link_to "Browse your feed", "#", class: "btn btn-primary btn-lg" %>
 
     <% else%>
-    <h1>Journal Link</h1>
-    <p>Keep up with the latest news in your field</p>
+      <h1>Journal Link</h1>
+      <p>Keep up with the latest news in your field</p>
+      <%= link_to t(".sign_in", default: "Signup"), new_user_registration_path, class: "btn btn-primary btn-lg" %>
+
     <!-- Sign up modal button -->
 <!--     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
       Sign up
@@ -17,6 +19,5 @@
 
   </div>
 </div>
-
 
 <%# render partial: "shared/signup_modal" %>
