@@ -14,6 +14,7 @@ gem 'simple_form'
 # own gems
 gem 'nokogiri'
 gem 'json'
+gem 'pg_search'
 
 # assets
 gem 'autoprefixer-rails'
