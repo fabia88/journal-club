@@ -1,9 +1,19 @@
 class LabsController < ApplicationController
+  def index
+    if current_user
+      @labs = current_user.joined_labs
+    else
+      redirect_to root_path
+      flash[:alert] = "You must be logged in."
+    end
+  end
+
   def show
     if current_user
       @lab = Lab.find(params[:id])
     else
       redirect_to root_path
+      flash[:alert] = "You must be logged in."
     end
   end
 
@@ -20,13 +30,17 @@ class LabsController < ApplicationController
       @participant.lab = @lab
       @participant.save
       redirect_to lab_path(@lab)
-      flash[:notice] = "Lab successfully created"
+      flash[:notice] = "Lab successfully created."
     else
       render 'new'
     end
   end
 
   def edit
+    if @lab.archived?
+      redirect_to root_path
+      flash[:alert] = "Cannot edit an archived lab."
+    end
     @lab = Lab.find(params[:id])
   end
 
@@ -34,6 +48,7 @@ class LabsController < ApplicationController
     @lab = Lab.find(params[:id])
     if @lab.update(lab_params)
       redirect_to lab_path(@lab)
+      flash[:notice] = "Lab successfully updated."
     else
       render :edit
     end
@@ -44,7 +59,7 @@ class LabsController < ApplicationController
     @lab.archived = true
     @lab.save
     redirect_to user_path(current_user)
-    flash[:notice] = "Lab successfully archived"
+    flash[:notice] = "Lab successfully archived."
   end
 
   private
@@ -52,11 +67,3 @@ class LabsController < ApplicationController
     params.require(:lab).permit(:name, :description)
   end
 end
-
-# lab_archive PATCH  /labs/:lab_id/archive(.:format)           labs#archive
-#        labs POST   /labs(.:format)                           labs#create
-#     new_lab GET    /labs/new(.:format)                       labs#new
-#    edit_lab GET    /labs/:id/edit(.:format)                  labs#edit
-#         lab GET    /labs/:id(.:format)                       labs#show
-#             PATCH  /labs/:id(.:format)                       labs#update
-#             PUT    /labs/:id(.:format)                       labs#update

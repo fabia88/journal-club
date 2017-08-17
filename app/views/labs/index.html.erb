@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h2><%= current_user.first_name %>'s labs</h2>
+    </div>
+
+    <% @labs.each do |lab| %>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="product">
+        <div class='product-body'>
+          <h3><%= lab.name %></h3>
+          <p>Status: <% if !lab.archived? %> Active <% else %> Archived <% end %></p>
+          <%= link_to "", lab_path(lab), class: "card-link" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <% if !current_user.joined_labs.first %>
+      <p>Looks like you aren't in any labs.</p>
+      <p>Would you like to create one?</p>
+      <% end %>
+      <%= link_to "Create a Lab", new_lab_path %>
+    </div>
+
+  </div>
+</div>

@@ -3,9 +3,8 @@
 
     <div class="col-xs-6">
       <h3>Lab participants</h3>
-      <%= link_to "Add participant", "#" %>
+      <%= link_to "Invite a user", new_lab_participant_path(@lab) %>
       <% @lab.participants.each do |participant| %>
-
       <div class="product">
         <img src="http://lorempixel.com/100/100/abstract/1/" alt="lorempixel" class="product-image hidden-xs">
         <div class='product-body'>
@@ -16,16 +15,16 @@
           <%= link_to "View profile", user_path(participant.user) %>
         </div>
         <ul class="list-inline product-controls hidden-sm hidden-xs">
-          <% participant_lab = participant.user.joined_labs.first %>
-          <% if current_user == participant.user && participant_lab == @lab && participant.status == "pending" %>
+          <!-- Conditional for "Accept/Deny" -->
+          <% if current_user == participant.user && participant.user.joined_labs.include?(@lab) && participant.status == "pending" %>
           <%= link_to "Accept", "#" %>
           <%= link_to "Deny", "#" %>
-          <% elsif participant_lab == @lab %>
+          <!-- Conditional for "Cancel" -->
+          <% elsif @lab.participants.find_by(user: current_user) && participant.user.joined_labs.include?(@lab) && participant.status == "pending" %>
           <%= link_to "Cancel", "#" %>
           <% end %>
         </ul>
       </div>
-
       <% end %>
     </div>
 
@@ -37,7 +36,8 @@
       <!-- Lab links -->
       <div>
         <%= link_to "Edit lab", edit_lab_path(@lab) %>
-        <% if current_user.created_labs.first == @lab%>
+        <!-- Conditional for "Archive lab" -->
+        <% if current_user.created_labs.include?(@lab) %>
         <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
         <% end %>
       </div>
@@ -70,5 +70,6 @@
         <h3>New post</h3>
       </div>
     </div>
+
   </div>
 </div>
