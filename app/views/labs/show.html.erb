@@ -36,7 +36,7 @@
       </div>
       <!-- Lab links -->
       <div>
-        <%= link_to "Edit lab", "#" %>
+        <%= link_to "Edit lab", edit_lab_path(@lab) %>
         <% if current_user.created_labs.first == @lab%>
         <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
         <% end %>
@@ -69,8 +69,6 @@
       <div>
         <h3>New post</h3>
       </div>
-
     </div>
-
   </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+      <h2>Edit Lab</h2>
+
+      <div class="form-group">
+        <%= simple_form_for(@lab, url: lab_path) do |f| %>
+        <%= f.input :name, class: "form-control" %>
+        <%= f.input :description, class: "form-control" %>
+        <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
+        <%= f.submit %>
+        <% end %>
+      </div>
+      <div>
+        <ul class="list-unstyled list-inline">
+          <li><%= link_to "Back to lab", lab_path(@lab) %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
