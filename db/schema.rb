@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170817140944) do
     t.string   "reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "paper_id"
   end
 
   create_table "participants", force: :cascade do |t|
