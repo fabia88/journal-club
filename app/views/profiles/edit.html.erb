@@ -14,14 +14,15 @@
         <%= f.input :research_interests, class: "form-control"%>
 
 
-
+        <p><strong>Search Keywords</strong></p>
         <% if @user.search_keywords %>
         <div id="search-keywords">
           <% @user.search_keywords.each do |search_keyword| %>
-          <input type="text" name="user[search_keywords][]" value="<%= search_keyword %>">
+          <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div">Remove</button>
+          </div>
           <% end %>
         </div>
-        <button id="add-keyword">Add keyword</button>
+        <button id="add-keyword">Add keyword field</button>
         <% end %>
 
         <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
@@ -44,8 +45,17 @@
 <script>
   $(document).ready(function(){
     $("#add-keyword").click(function(){
-      input_html = '<input type="text" name="user[search_keywords][]">'
-      $("#search-keywords").append(input_html);
+      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button>Remove</button></div>'
+      $("#search-keywords").append(div_html);
+      $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
+        $div = $(this).parent();
+        $div.remove();
+      });
+    });
+
+    $(".js-remove-search-keyword-div").click(function(){
+      $div = $(this).parent();
+      $div.remove();
     });
   });
 </script>
