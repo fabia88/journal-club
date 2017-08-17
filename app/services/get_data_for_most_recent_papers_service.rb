@@ -1,40 +1,31 @@
 class GetDataForMostRecentPapersService
   require "open-uri"
   require "nokogiri"
-  def initialize(imported_papers_count = 10)
+  require 'json'
+  def initialize(imported_papers_count = 200)
     @imported_papers_count = imported_papers_count
   end
 
   def call
-    url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&reldate=1&datetype=pdat&retmax=#{@imported_papers_count}&retmode=json"
+    url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=cancer[sb]+AND+hasabstract&reldate=14&datetype=pdat&retmax=#{@imported_papers_count}&retmode=json"
     papers_ids = extract_papers_ids(url)
-    papers_ids.map do |paper_id|
+    papers = papers_ids.map do |paper_id|
       sleep 1
       paper_details   = get_paper_details(paper_id)
       paper_abstract  = get_abstract(paper_id)
-      puts "Paper #{paper_id} done!"
-      # merge two hashes together
+
+      # merge hashes to one hash
       paper_details.merge({abstract: paper_abstract, paper_id: paper_id})
-
-      # authors_attributes = paper_details.delete(:authors)
-
-      # paper = Paper.new(paper_details)
-      # paper.abstract = paper_abstract
-
-      # paper.save!
-
-      # authors_attributes.each do |author_attributes|
-      #   author = Author.create(name: author_attributes["name"])
-      #   PaperAuthor.create(paper: paper, author: author)
-      # end
-
+    end
+    File.open('db/fixtures/papers.json', 'wb') do |file|
+      file.write(JSON.pretty_generate(papers))
     end
   end
 
   private
-  def extract_papers_ids(url)
-    return JSON.parse(open(url).read)["esearchresult"]["idlist"]
-  end
+  # def extract_papers_ids(url)
+  #   return JSON.parse(open(url).read)["esearchresult"]["idlist"]
+  # end
 
   def get_paper_details(paper_id)
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=#{paper_id}&retmode=json"
