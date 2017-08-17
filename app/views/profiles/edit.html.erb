@@ -13,23 +13,19 @@
         <%= f.input :education, class: "form-control" %>
         <%= f.input :research_interests, class: "form-control"%>
 
+
+        <p><strong>Search Keywords</strong></p>
         <% if @user.search_keywords %>
         <div id="search-keywords">
           <% @user.search_keywords.each do |search_keyword| %>
-          <input type="text" name="user[search_keywords][]" value="<%= search_keyword %>">
+          <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div">Remove</button>
+          </div>
           <% end %>
         </div>
         <% end %>
-
-        <button>Add keyword</button>
-
-        <!-- need JS to
-        add an 'add keyword' button
-        add'remove keyword' button
-        stay on page -->
+        <button id="add-keyword">Add keyword field</button>
 
         <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
-        <%#= f.input :avatar_url, class: "form-control"%>
         <%= f.submit %>
         <% end %>
       </div>
@@ -44,3 +40,23 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+<script>
+  $(document).ready(function(){
+    $("#add-keyword").click(function(){
+      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button>Remove</button></div>'
+      $("#search-keywords").append(div_html);
+      $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
+        $div = $(this).parent();
+        $div.remove();
+      });
+    });
+
+    $(".js-remove-search-keyword-div").click(function(){
+      $div = $(this).parent();
+      $div.remove();
+    });
+  });
+</script>
+<% end %>

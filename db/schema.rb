@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815130229) do
+ActiveRecord::Schema.define(version: 20170817140944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170815130229) do
     t.string   "reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "paper_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -101,11 +102,11 @@ ActiveRecord::Schema.define(version: 20170815130229) do
     t.string   "password"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "education"
-    t.string   "job_description"
-    t.string   "research_interests"
     t.string   "avatar_url"
     t.text     "search_keywords",                                  array: true
+    t.text     "education"
+    t.text     "job_description"
+    t.text     "research_interests"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
