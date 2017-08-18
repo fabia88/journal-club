@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817140944) do
+ActiveRecord::Schema.define(version: 20170818085159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20170817140944) do
     t.index ["creator_id"], name: "index_labs_on_creator_id", using: :btree
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "lab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_id"], name: "index_memberships_on_lab_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  end
+
   create_table "paper_authors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,16 +62,6 @@ ActiveRecord::Schema.define(version: 20170817140944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "paper_id"
-  end
-
-  create_table "participants", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "lab_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "status"
-    t.index ["lab_id"], name: "index_participants_on_lab_id", using: :btree
-    t.index ["user_id"], name: "index_participants_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20170817140944) do
   end
 
   add_foreign_key "authors", "users"
-  add_foreign_key "participants", "labs"
-  add_foreign_key "participants", "users"
+  add_foreign_key "memberships", "labs"
+  add_foreign_key "memberships", "users"
   add_foreign_key "posts", "labs"
   add_foreign_key "posts", "papers"
   add_foreign_key "posts", "users"

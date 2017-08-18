@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     member do
       patch :archive
     end
-    resources :participants, only: [:new, :create] do
+    resources :memberships, only: [:new, :create] do
       member do
         patch :accept
         patch :deny
