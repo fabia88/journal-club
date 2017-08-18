@@ -14,7 +14,7 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
     <!-- Links (when logged in) -->
-    <%= link_to "My feed", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "My feed", papers_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to "My labs", labs_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
