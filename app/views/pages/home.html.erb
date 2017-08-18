@@ -3,7 +3,7 @@
 
     <% if current_user %>
       <h1>Welcome back, <%= current_user.first_name %>.</h1>
-      <%= link_to "Browse your feed", "", class: "btn btn-primary btn-lg" %>
+      <%= link_to "Browse your feed", papers_path, class: "btn btn-primary btn-lg" %>
 
     <% else%>
       <h1>Journal Link</h1>

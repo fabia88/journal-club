@@ -8,12 +8,18 @@
 
       <div>
         <h3>Authors</h3>
+      <ul class="list-inline">
         <% @paper.authors.each do |author| %>
-        <p>
+        <li>
+        <% if author.user.nil? %>
+        <%= author.name %>
+        <% else %>
           <img class="avatar-large hidden-xs" src="http://lorempixel.com/100/100/abstract/1/">
           <%= author.name %>
-        </p>
         <% end %>
+        </li>
+        <% end %>
+        </ul>
       </div>
 
       <div>
