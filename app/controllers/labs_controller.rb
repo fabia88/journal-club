@@ -25,10 +25,10 @@ class LabsController < ApplicationController
     @lab = Lab.new(lab_params)
     @lab.creator = current_user
     if @lab.save
-      @participant = Participant.new(status: "accepted")
-      @participant.user = current_user
-      @participant.lab = @lab
-      @participant.save
+      @membership = Membership.new(status: "accepted")
+      @membership.user = current_user
+      @membership.lab = @lab
+      @membership.save
       redirect_to lab_path(@lab)
       flash[:notice] = "Lab successfully created."
     else

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+      <h2>New Membership</h2>
+
+      <%= simple_form_for @membership, url: lab_memberships_path do |f| %>
+      <%= f.input :email, autofocus: true %>
+      <%= f.submit %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

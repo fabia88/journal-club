@@ -1,4 +1,4 @@
-class Participant < ApplicationRecord
+class Membership < ApplicationRecord
   attr_accessor :email
   belongs_to :user
   belongs_to :lab
