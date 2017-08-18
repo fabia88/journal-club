@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-xs-6">
+    <div class="col-xs-4">
       <h3>Lab memberships</h3>
       <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
       <% @lab.memberships.each do |membership| %>
@@ -28,7 +28,7 @@
       <% end %>
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-8">
       <!-- Lab banner -->
       <h2><%= @lab.name %></h2>
       <div class="banner banner-40vh" style="background-image: url('https://static.pexels.com/photos/267885/pexels-photo-267885.jpeg');">
