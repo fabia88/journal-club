@@ -37,11 +37,11 @@ class LabsController < ApplicationController
   end
 
   def edit
+    @lab = Lab.find(params[:id])
     if @lab.archived?
       redirect_to root_path
       flash[:alert] = "Cannot edit an archived lab."
     end
-    @lab = Lab.find(params[:id])
   end
 
   def update
