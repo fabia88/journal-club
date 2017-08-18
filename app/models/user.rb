@@ -11,6 +11,13 @@ class User < ApplicationRecord
   has_many :reviews
 
   validates :first_name, :last_name, presence: true
+  validate :no_blank_search_keywords
+
+  def no_blank_search_keywords
+    if self.search_keywords.any?(&:blank?)
+      errors.add(:search_keywords, "No search keywords field can remain blank.")
+    end
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
