@@ -4,17 +4,22 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :users, only: [:index, :show]
+
   resources :papers, only: [:index, :show] do
     resources :reviews, only: [:new, :create]
-    resources :posts, only: [:new, :create]
   end
 
   resource :profile, only: [:edit, :update]
+
   resources :labs, only: [:index, :show, :new, :create, :edit, :update] do
     member do
       patch :archive
     end
     resources :memberships, only: [:new, :create]
+    resources :posts, only: [:new, :create]
+    resources :paper, only: [] do
+      resources :posts, only: [:new, :create]
+    end
   end
 
   resources :memberships, only: [] do
@@ -25,7 +30,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: [:new, :create]
   resources :authors, only: [] do
     member do
       patch :confirm_authorship

@@ -11,6 +11,7 @@ class LabsController < ApplicationController
   def show
     if current_user
       @lab = Lab.find(params[:id])
+      @post = Post.new
     else
       redirect_to root_path
       flash[:alert] = "You must be logged in."
@@ -41,6 +42,9 @@ class LabsController < ApplicationController
     if @lab.archived?
       redirect_to root_path
       flash[:alert] = "Cannot edit an archived lab."
+    elsif !current_user.joined_labs.include?(@lab) || !(current_user.memberships.find_by_lab_id(@lab).status == "accepted")
+      redirect_to root_path
+      flash[:alert] = "Only accepted members can edit."
     end
   end
 
