@@ -52,22 +52,37 @@
       <!-- Index posts -->
       <div>
         <h3>Posts</h3>
+        <% @lab.posts.each do |post|%>
         <div class="message">
           <img class="avatar-large hidden-xs" src="http://lorempixel.com/100/100/abstract/1/">
           <div class="message-name">
-            <h3>Firstname Lastname</h3>
-            <p>10/07/17</p>
+            <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
+            <p><%= post.created_at %></p>
           </div>
           <div class="message-body">
-            <p>
-              I am PLACEHOLDER TEXT! I might be in Shanghai at this moment... Can I tell you later?
-            </p>
+            <p><%= post.content %></p>
           </div>
         </div>
+        <!-- If post has paper_id linked -->
+        <% if post.paper %>
+        <div class="product">
+          <div class='product-body'>
+            <h3><%= post.paper.title %></h3>
+            <%= link_to "Go to paper", paper_path(post.paper) %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
       </div>
       <!-- Create post -->
       <div>
-        <h3>New post</h3>
+        <h3>New Post</h3>
+        <div class="form-group">
+          <%= simple_form_for([@lab, @post]) do |f|%>
+          <%= f.input :content, class: "form-control" %>
+          <%= f.button :submit, class: "btn btn-primary" %>
+          <% end %>
+        </div>
       </div>
     </div>
 

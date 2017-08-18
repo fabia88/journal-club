@@ -22,6 +22,7 @@ class PapersController < ApplicationController
 
   def show
     @paper = Paper.find(params[:id])
+    @labs = current_user.joined_labs
     @review = Review.new
   end
 end
