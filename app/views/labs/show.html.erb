@@ -17,11 +17,11 @@
         <ul class="list-inline product-controls hidden-sm hidden-xs">
           <!-- Conditional for "Accept/Deny" -->
           <% if current_user == membership.user && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-          <%= link_to "Accept", "#" %>
-          <%= link_to "Deny", "#" %>
+          <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+          <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
           <!-- Conditional for "Cancel" -->
           <% elsif @lab.memberships.find_by(user: current_user) && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-          <%= link_to "Cancel", "#" %>
+          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
           <% end %>
         </ul>
       </div>
