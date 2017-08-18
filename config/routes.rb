@@ -14,12 +14,14 @@ Rails.application.routes.draw do
     member do
       patch :archive
     end
-    resources :memberships, only: [:new, :create] do
-      member do
-        patch :accept
-        patch :deny
-        patch :cancel
-      end
+    resources :memberships, only: [:new, :create]
+  end
+
+  resources :memberships, only: [] do
+    member do
+      patch :accept
+      patch :deny
+      patch :cancel
     end
   end
 

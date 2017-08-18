@@ -9,8 +9,9 @@
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="product">
         <div class='product-body'>
-          <h3><%= lab.name %></h3>
-          <p>Status: <% if !lab.archived? %> Active <% else %> Archived <% end %></p>
+          <h3><%= lab.name %> <% if lab.creator == current_user %>(Creator)<% end %></h3>
+          <p>Lab status: <strong><% if !lab.archived? %> active <% else %> archived <% end %></strong></p>
+          <p>Membership status: <strong><%= current_user.memberships.find_by_lab_id(lab.id).status %></strong></p>
           <%= link_to "", lab_path(lab), class: "card-link" %>
         </div>
       </div>
