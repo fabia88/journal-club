@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
       redirect_to user_path(@user)
       flash[:notice] = "Profile successfully updated."
     else
+      flash[:notice] = "Search keywords field must not be blank." if @user.errors[:search_keywords].any?
       render :edit
     end
   end
