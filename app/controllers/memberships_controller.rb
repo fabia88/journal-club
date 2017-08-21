@@ -34,7 +34,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     @membership.status = "accepted"
     @lab = @membership.lab
-    if current_user.memberships.find_by_membership_id(@membership.id)
+    if current_user.memberships.find_by_lab_id(@lab)
       if @membership.save
         redirect_to lab_path(@lab)
         flash[:notice] = "Succesfully accepted membership for #{@lab.name}."
