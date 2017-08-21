@@ -5,13 +5,14 @@ class Admin::DashboardsController < ApplicationController
   end
 
   def import_papers
-    @papers = ImportNewPapersService.new().call
+    ImportNewPapersJob.perform_later
+    flash[:notice] = "Job successfully enqueud!"
     redirect_to admin_dashboard_path
   end
 
   private
   def authorize_admin
-    if !current_user.admin
+    unless current_user && current_user.admin
       redirect_to root_path
     end
   end

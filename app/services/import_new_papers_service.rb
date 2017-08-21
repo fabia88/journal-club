@@ -1,5 +1,5 @@
 class ImportNewPapersService
-  def initialize(number_of_papers)
+  def initialize(number_of_papers = 2000)
     @number_of_papers = number_of_papers
   end
 
