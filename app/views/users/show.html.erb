@@ -29,8 +29,9 @@
 
 
             <div>
-            <strong>
-              <%= @user.author.name %>
+              <% if @user.author %>
+              <strong>
+                <%= @user.author.name %>
               </strong>
               <ul>
                <% @user.author.papers.each do |paper| %>
@@ -38,47 +39,48 @@
                  <%= link_to paper.title, paper_path(paper) %>
                </li>
                <% end %>
-               </ul>
-               </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h3>Research Interests</h3>
-        <p><%= @user.research_interests %></p>
-      </div>
+               <% end %>
+             </ul>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div>
+      <h3>Research Interests</h3>
+      <p><%= @user.research_interests %></p>
     </div>
-    <!-- Right -->
-    <div class="col-xs-3">
+  </div>
+  <!-- Right -->
+  <div class="col-xs-3">
+    <div>
+      <h2>Lab Information</h2>
+    </div>
+    <div>
       <div>
-        <h2>Lab Information</h2>
-      </div>
-      <div>
-        <div>
-          <!-- Conditional for current user doesn't have labs -->
-          <% if @user == current_user && !@user.joined_labs.first %>
-          <p>Looks like you aren't in any labs.</p>
-          <p>Would you like to create one?</p>
-          <%= link_to "Create a Lab", new_lab_path %>
-          <!-- Conditional for user doesn't have labs -->
-          <% elsif !@user.joined_labs.first %>
-          <p>Looks like <%= @user.first_name %> isn't in any labs.</p>
-          <!-- Conditional for user has labs -->
-          <% elsif @user.joined_labs.first %>
-          <% @user.joined_labs.each do |lab| %>
-          <div class="product">
-            <div class='product-body'>
-              <h3><%= lab.name %></h3>
-              <p>Status: <% if !lab.archived? %> Active <% else %> Archived <% end %></p>
-              <%= link_to "Go to lab", lab_path(lab) %>
-            </div>
+        <!-- Conditional for current user doesn't have labs -->
+        <% if @user == current_user && !@user.joined_labs.first %>
+        <p>Looks like you aren't in any labs.</p>
+        <p>Would you like to create one?</p>
+        <%= link_to "Create a Lab", new_lab_path %>
+        <!-- Conditional for user doesn't have labs -->
+        <% elsif !@user.joined_labs.first %>
+        <p>Looks like <%= @user.first_name %> isn't in any labs.</p>
+        <!-- Conditional for user has labs -->
+        <% elsif @user.joined_labs.first %>
+        <% @user.joined_labs.each do |lab| %>
+        <div class="product">
+          <div class='product-body'>
+            <h3><%= lab.name %></h3>
+            <p>Status: <% if !lab.archived? %> Active <% else %> Archived <% end %></p>
+            <%= link_to "Go to lab", lab_path(lab) %>
           </div>
-          <% end %>
-          <% end %>
         </div>
+        <% end %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- Links -->
 <div class="container">
