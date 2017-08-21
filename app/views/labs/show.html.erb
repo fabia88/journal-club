@@ -11,7 +11,6 @@
       <% @lab.memberships.each do |membership| %>
           <!-- Membership user profile picture -->
           <% if membership.status == "accepted" %>
-
             <div class="product">
             <%= render "labs/member_profile_picture", membership: membership %>
               <div class='product-body'>
@@ -21,7 +20,6 @@
                 <% end %>
               </div>
             </div>
-
           <% elsif membership.status == "pending" %>
             <% if current_user == @lab.creator  %>
               <div class="product">
@@ -33,7 +31,6 @@
               </div>
             <% elsif current_user == membership.user %>
               <%= render "labs/member_profile_picture", membership: membership %>
-
               <div class="product">
                   <%= render "labs/member_info", membership: membership %>
                 <div class='product-body'>
@@ -46,7 +43,6 @@
             <% end %>
           <% else %>
             <% if current_user == @lab.creator  %>
-
               <div class="product">
               <%= render "labs/member_profile_picture", membership: membership %>
                 <div class='product-body'>
@@ -57,9 +53,6 @@
           <% end %>
       <% end %>
     </div>
-
-
-
 
     <!-- Right -->
     <div class="col-xs-8">
