@@ -12,7 +12,7 @@
           <% @paper.authors.each do |author| %>
             <li>
               <%= author.name %>
-              <% if @paper.is_user_potential_author?(current_user, author) %>
+              <% if @paper.is_user_potential_author?(current_user, author)  %>
                 <%= link_to confirm_authorship_paper_author_path(@paper, author), method: :post do %>
                   <i class="glyphicon glyphicon-education"></i>
                   Claim authorship

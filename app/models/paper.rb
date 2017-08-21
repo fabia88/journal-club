@@ -6,7 +6,14 @@ class Paper < ApplicationRecord
   # validates :title, :source, :reference, presence: true
 
   def is_user_potential_author?(user, author)
+
+    is_user_not_already_author = self.authors.all? { user.author != author }
+
+
+
     user_author_name = "#{user.last_name} #{user.first_name[0]}"
-    author.name == user_author_name
+    matching_names = author.name == user_author_name
+
+    matching_names && is_user_not_already_author
   end
 end
