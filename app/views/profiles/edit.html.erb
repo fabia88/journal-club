@@ -12,52 +12,57 @@
         <%= f.input :job_description, class: "form-control" %>
         <%= f.input :education, class: "form-control" %>
         <%= f.input :research_interests, class: "form-control"%>
-
-
+        <%= f.input :avatar %>
+        <%= f.input :avatar_cache, as: :hidden %>
 
         <p><strong>Search Keywords</strong></p>
-          <% if @user.search_keywords %>
-            <div id="search-keywords">
-              <% @user.search_keywords.each do |search_keyword| %>
-                <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div">Remove</button></div>
-              <% end %>
-            </div>
-          <% end %>
-
-          <button id="add-keyword">Add keyword field</button>
-
-          <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
-          <%= f.submit %>
+        <% if @user.search_keywords %>
+        <div id="search-keywords">
+          <% @user.search_keywords.each do |search_keyword| %>
+          <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div">Remove</button></div>
           <% end %>
         </div>
+        <% end %>
 
-        <div>
-          <ul class="list-unstyled list-inline">
-            <li><%= link_to "Back to profile", user_path(@user.id) %></li>
-            <li><%= link_to "Back to user index", users_path %></li>
-            <li><%= link_to "Back to home", root_path %></li>
-          </ul>
-        </div>
+        <button id="add-keyword">Add keyword field</button>
+
+        <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
+        <%= f.submit %>
+        <% end %>
       </div>
+
+      <h3>Cancel my account</h3>
+
+      <p>Unhappy? <%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      <div>
+        <ul class="list-unstyled list-inline">
+          <li><%= link_to "Back to profile", user_path(@user.id) %></li>
+          <li><%= link_to "Back to user index", users_path %></li>
+          <li><%= link_to "Back to home", root_path %></li>
+        </ul>
+      </div>
+
     </div>
   </div>
+</div>
 
-  <%= content_for(:after_js) do %>
-  <script>
-    $(document).ready(function(){
-      $("#add-keyword").click(function(){
-        div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button>Remove</button></div>'
-        $("#search-keywords").append(div_html);
-        $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
-          $div = $(this).parent();
-          $div.remove();
-        });
-      });
-
-      $(".js-remove-search-keyword-div").click(function(){
+<%= content_for(:after_js) do %>
+<script>
+  $(document).ready(function(){
+    $("#add-keyword").click(function(){
+      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button>Remove</button></div>'
+      $("#search-keywords").append(div_html);
+      $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
         $div = $(this).parent();
         $div.remove();
       });
     });
+
+    $(".js-remove-search-keyword-div").click(function(){
+      $div = $(this).parent();
+      $div.remove();
+    });
+  });
 </script>
 <% end %>

@@ -10,22 +10,28 @@ User.destroy_all
   # users
   puts "Seeding users..."
   emails = ["anna@example.com",
-    "brie@example.com",
+    "bree@example.com",
     "zoe@example.com",
-    "valentina@example.com"
+    "stephanie@example.com"
   ]
-  first_names = %w(Anna Brie Zoe Valentina)
-  last_names =  %w(Smith Garcia Baker Williamson)
+  first_names = %w(Anna Bree Zoe Stephanie)
+  last_names =  %w(Smith Garcia Baker Lam)
+  avatars = ["http://res.cloudinary.com/rebsrebs/image/upload/v1503233397/anna_ftergx.jpg",
+    "http://res.cloudinary.com/rebsrebs/image/upload/v1503233401/bree_mafldi.jpg",
+    "http://res.cloudinary.com/rebsrebs/image/upload/v1503233407/zoe_t8t6y7.jpg",
+    "http://res.cloudinary.com/rebsrebs/image/upload/v1503233413/stephanie_ynrzjf.jpg"
+  ]
   emails.each_with_index do |e, i|
     user = User.create!(
       email: e,
       password: "123456",
       first_name: first_names[i],
       last_name: last_names[i],
-      education: "University and places",
+      education: "University of Amsterdam",
       job_description: "PhD student",
       research_interests: "Neuroscience",
-      search_keywords: ["Alzheimers"]
+      search_keywords: ["p53", "ferroptosis"],
+      remote_avatar_url: avatars[i]
       )
   end
 

@@ -26,6 +26,7 @@ class ProfilesController < ApplicationController
       :job_description,
       :research_interests,
       :avatar,
+      :avatar_cache,
       search_keywords: []
       )
   end
