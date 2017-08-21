@@ -26,6 +26,20 @@
             <% if current_user == @user %>
             <%= link_to "Edit profile", edit_profile_path %>
             <% end %>
+
+
+            <div>
+            <strong>
+              <%= @user.author.name %>
+              </strong>
+              <ul>
+               <% @user.author.papers.each do |paper| %>
+               <li>
+                 <%= link_to paper.title, paper_path(paper) %>
+               </li>
+               <% end %>
+               </ul>
+               </div>
           </div>
         </div>
       </div>
