@@ -3,14 +3,23 @@
   align-items: center;
   padding: 50px 0;
   transition: all 0.15s ease;
-  border-bottom: 1px solid #969CA1;
-  cursor: auto;
+  border-top: 1px solid #969CA1;
 }
 .product-last {
   display: flex;
   align-items: center;
   padding: 50px 0;
   transition: all 0.15s ease;
+}
+.product-top{
+  padding-bottom: 50px;
+}
+.product-top a{
+  background-color: $red;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 2px;
 }
 
 /* Body design */
@@ -29,7 +38,7 @@
   font-weight: 500;
 }
 .product-body a {
-  background-color: #5C0E18;
+  background-color: $red;
   color: white;
   font-weight: 600;
   padding: 5px;
@@ -93,7 +102,7 @@
 /* Hover effects */
 .product:hover {
   background: $white;
-  cursor: pointer;
+  cursor: auto;
 }
 .product-upvote:hover, .product-upvote.product-upvote-upvoted {
   color: $blue;

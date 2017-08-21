@@ -2,12 +2,13 @@
   <div class="row">
     <!-- Left -->
     <div class="col-xs-4">
+      <div class="product-top">
       <h3>Lab memberships</h3>
 
       <% if current_user == @lab.creator %>
         <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
       <% end %>
-
+      </div>
       <% @lab.memberships.each do |membership| %>
           <!-- Membership user profile picture -->
           <% if membership.status == "accepted" %>
@@ -74,9 +75,9 @@
       <div>
         <h3>Description</h3>
         <p><%= @lab.description %></p>
-        <h4>
+        <h5>
           Last updated: <%= @lab.updated_at.to_formatted_s(:short) %> | Created at: <%= @lab.created_at.to_formatted_s(:short) %>
-        </h4>
+        </h5>
       </div>
       <!-- Create post -->
       <div>
