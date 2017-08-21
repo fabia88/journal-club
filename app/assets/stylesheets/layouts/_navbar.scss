@@ -1,5 +1,10 @@
 /* Main navbar */
-.navbar-wagon {
+.navbar-journal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   background: $white;
   transition: all 0.3s ease;
@@ -10,60 +15,68 @@
   justify-content: space-between;
 }
 
+.navbar-opaque {
+  background-color: $white !important;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03) !important;
+
+}
+.pages-home .navbar-journal {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 /* Logo */
-.navbar-wagon-brand img {
+.navbar-journal-brand img {
   height: 50px;
 }
 
 /* User Avatar */
-.navbar-wagon .avatar {
+.navbar-journal .avatar {
   height: 35px;
   width: 35px;
   border-radius: 50%;
 }
 
 /* Right section */
-.navbar-wagon-right {
+.navbar-journal-right {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 /* Basic navbar item */
-.navbar-wagon-item {
+.navbar-journal-item {
   cursor: pointer;
   padding: 0 20px;
 }
 
 /* Navbar link */
-.navbar-wagon-link {
+.navbar-journal-link {
   color: $gray;
-  font-size: 14px;
+  font-size: 20px;
 }
-.navbar-wagon-link:hover {
+.navbar-journal-link:hover {
   color: $red;
   text-decoration: none;
 }
 
 /* Dropdown menu */
-.navbar-wagon-dropdown-menu {
+.navbar-journal-dropdown-menu {
   margin-top: 15px;
   box-shadow: 1px 1px 4px #E6E6E6;
   border-color: #E6E6E6;
 }
-.navbar-wagon-dropdown-menu li > a {
+.navbar-journal-dropdown-menu li > a {
   transition: color 0.3s ease;
   font-weight: lighter !important;
-  color: $gray !important;
-  font-size: 15px !important;
   line-height: 22px !important;
   padding: 10px 20px;
 }
-.navbar-wagon-dropdown-menu li > a:hover {
+.navbar-journal-dropdown-menu li > a:hover {
   background: transparent !important;
   color: $black !important;
 }
-.navbar-wagon-dropdown-menu:before {
+.navbar-journal-dropdown-menu:before {
   content: ' ';
   height: 10px;
   width: 10px;
