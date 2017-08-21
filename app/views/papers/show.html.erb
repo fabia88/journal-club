@@ -63,9 +63,12 @@
         <h3>Reviews</h3>
         <% @paper.reviews.sort_by { |review| review.created_at}.reverse.each do |review|%>
         <div class="message">
-
+          <!-- Cloudinary image tag -->
+          <% if review.user.avatar? %>
           <%= cl_image_tag review.user.avatar, width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
-
+          <% else %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 50, height: 50, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <% end %>
           <div class="message-name">
             <div class="message-name">
               <h3><%= review.user.first_name %> <%= review.user.last_name %></h3>

@@ -1,39 +1,47 @@
 <div class="container">
   <div class="row">
-
+    <!-- Left -->
     <div class="col-xs-4">
       <h3>Lab memberships</h3>
       <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
       <% @lab.memberships.each do |membership| %>
       <div class="product">
         <!-- Membership user profile picture -->
+        <% if membership.user.avatar? %>
         <%= cl_image_tag membership.user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+        <% else %>
+        <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+        <% end %>
         <div class='product-body'>
           <h3><%= membership.user.first_name %> <%= membership.user.last_name %></h3>
           <p>Status: <strong><%= membership.status %></strong></p>
           <p><%= membership.user.job_description %></p>
           <p><%= membership.user.education %></p>
-          <%= link_to "View profile", user_path(membership.user) %>
+          <p><%= link_to "View profile", user_path(membership.user) %></p>
+          <p>
+            <!-- Conditional for "Accept/Deny" -->
+            <% if current_user == membership.user && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
+            <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+            <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
+          </p>
+          <p>
+            <!-- Conditional for "Cancel" -->
+            <% elsif @lab.memberships.find_by(user: current_user) && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
+            <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+            <% end %>
+          </p>
         </div>
-        <ul class="list-inline product-controls hidden-sm hidden-xs">
-          <!-- Conditional for "Accept/Deny" -->
-          <% if current_user == membership.user && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-          <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
-          <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
-          <!-- Conditional for "Cancel" -->
-          <% elsif @lab.memberships.find_by(user: current_user) && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
-          <% end %>
-        </ul>
       </div>
       <% end %>
     </div>
-
+    <!-- Right -->
     <div class="col-xs-8">
       <!-- Lab banner -->
       <h2><%= @lab.name %></h2>
-      <div class="banner banner-40vh" style="background-image: url('https://static.pexels.com/photos/267885/pexels-photo-267885.jpeg');">
+      <% if @lab.photo? %>
+      <div class="banner banner-40vh" style="background-image: url(<%= cl_image_path @lab.photo, height: 300, width: 400, crop: :fill, alt: "Lab photo" ; %>);">
       </div>
+      <% end %>
       <!-- Lab links -->
       <div>
         <%= link_to "Edit lab", edit_lab_path(@lab) %>
@@ -65,7 +73,12 @@
         <h3>Posts</h3>
         <% @lab.posts.sort_by { |post| post.created_at}.reverse.each do |post|%>
         <div class="message">
+          <!-- Cloudinary image tags -->
+          <% if post.user.avatar? %>
           <%= cl_image_tag post.user.avatar, width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <% else %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <% end %>
           <div class="message-name">
             <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
             <p><%= post.created_at %></p>
@@ -85,8 +98,6 @@
         <% end %>
         <% end %>
       </div>
-
     </div>
-
   </div>
 </div>
