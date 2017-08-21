@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <div class="card-form">
+        <h2>New Lab</h2>
 
-      <h2>New Lab</h2>
-
-      <%= simple_form_for(@lab) do |f| %>
-      <%= f.input :name, autofocus: true %>
-      <%= f.input :description %>
-      <%= f.submit %>
-      <% end %>
-
+        <%= simple_form_for(@lab) do |f| %>
+        <%= f.input :name, autofocus: true %>
+        <%= f.input :description %>
+        <%= f.button :submit, class: "btn btn-primary button" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

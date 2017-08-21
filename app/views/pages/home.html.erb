@@ -2,13 +2,13 @@
   <div class="banner-content">
 
     <% if current_user %>
-      <h1>Welcome back, <%= current_user.first_name %>.</h1>
-      <%= link_to "Browse your feed", papers_path, class: "btn btn-primary btn-lg" %>
+    <h1>Welcome back, <%= current_user.first_name %>.</h1>
+    <%= link_to "Browse your feed", papers_path, class: "btn btn-primary btn-lg button-lg" %>
 
     <% else%>
-      <h1>Journal Link</h1>
-      <p>Keep up with the latest news in your field</p>
-      <%= link_to t(".sign_in", default: "Signup"), new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <h1>Journal Link</h1>
+    <p>Keep up with the latest news in your field</p>
+    <%= link_to t(".sign_in", default: "Signup"), new_user_registration_path, class: "btn btn-primary btn-lg button-lg" %>
 
     <!-- Sign up modal button -->
 <!--     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
@@ -17,6 +17,46 @@
 
     <% end %>
 
+  </div>
+</div>
+<div class="padded-home text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <h4>Stop waisting time searching for papers</h4>
+        <h4>Journal Link will select them for you</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padded-home text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div id="one">
+          <h4>All the new research, in one place</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam sed, enim recusandae laudantium iste ratione. Delectus est ipsum rem qui explicabo commodi molestiae incidunt, quasi numquam cupiditate accusantium culpa, quis.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div id="two"><%= image_tag("home1.jpg", :height => 350) %></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padded-home text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div id="one"><%= image_tag("home2.jpg", :height => 350) %></div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div id="two">
+          <h4>Share with your lab</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam sed, enim recusandae laudantium iste ratione. Delectus est ipsum rem qui explicabo commodi molestiae incidunt, quasi numquam cupiditate accusantium culpa, quis.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

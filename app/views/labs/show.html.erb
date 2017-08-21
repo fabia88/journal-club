@@ -65,7 +65,7 @@
         </div>
         <!-- If post has paper_id linked -->
         <% if post.paper %>
-        <div class="product">
+        <div class="product-last">
           <div class='product-body'>
             <h3><%= post.paper.title %></h3>
             <%= link_to "Go to paper", paper_path(post.paper) %>
@@ -75,12 +75,12 @@
         <% end %>
       </div>
       <!-- Create post -->
-      <div>
+      <div id="new-post-form">
         <h3>New Post</h3>
         <div class="form-group">
           <%= simple_form_for([@lab, @post]) do |f|%>
           <%= f.input :content, class: "form-control" %>
-          <%= f.button :submit, class: "btn btn-primary" %>
+          <%= f.button :submit, class: "btn btn-primary button" %>
           <% end %>
         </div>
       </div>
