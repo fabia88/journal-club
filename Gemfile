@@ -15,6 +15,8 @@ gem 'simple_form'
 gem 'nokogiri'
 gem 'json'
 gem 'pg_search'
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
 
 # assets
 gem 'autoprefixer-rails'
