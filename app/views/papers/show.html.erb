@@ -10,25 +10,19 @@
         <h3>Authors</h3>
         <ul class="list-inline">
           <% @paper.authors.each do |author| %>
-          <li>
-            <% if author.user.nil? %>
-            <%= author.name %>
-            <% else %>
-            <img class="avatar-large hidden-xs" src="http://lorempixel.com/100/100/abstract/1/">
-            <%= author.name %>
-            <% end %>
-          </li>
+            <li>
+              <%= author.name %>
+              <% if @paper.is_user_potential_author?(current_user, author)  %>
+                <%= link_to confirm_authorship_paper_author_path(@paper, author), method: :post do %>
+                  <i class="glyphicon glyphicon-education"></i>
+                  Claim authorship
+                <% end %>
+              <% end %>
+            </li>
           <% end %>
+
         </ul>
       </div>
-
-      <% if Author.confirm_authorship(current_user) %>
-      <p>(Are you an author of this paper? Click here!)</p>
-      <% else %>
-      <!-- Sign up as an author -->
-      <% end %>
-      <!-- Form with button to make user into an author -->
-
       <div>
         <h4><%= @paper.date %> | <%= @paper.source %> | <%= @paper.reference %></h4>
       </div>
@@ -54,7 +48,7 @@
         <div class="form-group">
           <%= simple_form_for([@paper, @review]) do |f|%>
           <%= f.input :content, class: "form-control" %>
-          <%= f.button :submit, "Publish", class: "btn btn-primary" %>
+          <%= f.button :submit, "Submit", class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
@@ -63,9 +57,12 @@
         <h3>Reviews</h3>
         <% @paper.reviews.sort_by { |review| review.created_at}.reverse.each do |review|%>
         <div class="message">
-
+          <!-- Cloudinary image tag -->
+          <% if review.user.avatar? %>
           <%= cl_image_tag review.user.avatar, width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
-
+          <% else %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 50, height: 50, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <% end %>
           <div class="message-name">
             <div class="message-name">
               <h3><%= review.user.first_name %> <%= review.user.last_name %></h3>

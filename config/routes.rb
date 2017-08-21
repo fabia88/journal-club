@@ -16,6 +16,15 @@ Rails.application.routes.draw do
 
   resources :papers, only: [:index, :show] do
     resources :reviews, only: [:new, :create]
+    member do
+      post :add_author
+    end
+
+    resources :authors, only: [] do
+      member do
+        post :confirm_authorship
+      end
+    end
   end
 
   resource :profile, only: [:edit, :update]
@@ -39,9 +48,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :authors, only: [] do
-    member do
-      patch :confirm_authorship
-    end
-  end
+
 end

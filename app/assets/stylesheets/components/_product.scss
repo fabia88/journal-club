@@ -4,6 +4,7 @@
   padding: 50px 0;
   transition: all 0.15s ease;
   border-bottom: 1px solid #969CA1;
+  cursor: auto;
 }
 .product-last {
   display: flex;
@@ -24,7 +25,15 @@
 .product-body p {
   font-weight: lighter;
   color: $gray;
-  margin-bottom: 0;
+  margin-bottom: 10;
+  font-weight: 500;
+}
+.product-body a {
+  background-color: #5C0E18;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 2px;
 }
 
 /* Product image */
