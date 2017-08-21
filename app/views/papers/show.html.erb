@@ -8,26 +8,28 @@
       <!-- Paper authors -->
       <div>
         <h3>Authors</h3>
-      <ul class="list-inline">
-        <% @paper.authors.each do |author| %>
-        <li>
-        <% if author.user.nil? %>
-        <%= author.name %>
-        <% else %>
-          <img class="avatar-large hidden-xs" src="http://lorempixel.com/100/100/abstract/1/">
-          <%= author.name %>
-        <% end %>
-        </li>
-        <% end %>
+        <ul class="list-inline">
+          <% @paper.authors.each do |author| %>
+            <li>
+              <%= author.name %>
+              <% if @paper.is_user_potential_author?(current_user, author) %>
+                <%= link_to confirm_authorship_paper_author_path(@paper, author), method: :post do %>
+                  <i class="glyphicon glyphicon-education"></i>
+                  Claim authorship
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+
         </ul>
       </div>
 
-      <% if Author.confirm_authorship(current_user) %>
-      <p>(Are you an author of this paper? Click here!)</p>
-      <% else %>
-        <!-- Sign up as an author -->
-      <% end %>
-<!-- Form with button to make user into an author -->
+
+
+      <!-- <form action="/authors/:id/confirm_authorship">
+        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-education"></i>Claim authorship</button>
+      </form> -->
+
 
       <div>
         <h4><%= @paper.date %> | <%= @paper.source %> | <%= @paper.reference %></h4>
