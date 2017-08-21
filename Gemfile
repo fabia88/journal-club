@@ -11,6 +11,10 @@ gem 'rails', '5.0.5'
 gem 'redis'
 gem 'simple_form'
 
+gem 'sidekiq'
+gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
+
+
 # own gems
 gem 'nokogiri'
 gem 'json'
