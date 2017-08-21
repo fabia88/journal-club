@@ -3,37 +3,64 @@
     <!-- Left -->
     <div class="col-xs-4">
       <h3>Lab memberships</h3>
-      <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
+
+      <% if current_user == @lab.creator %>
+        <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
+      <% end %>
+
       <% @lab.memberships.each do |membership| %>
-      <div class="product">
-        <!-- Membership user profile picture -->
-        <% if membership.user.avatar? %>
-        <%= cl_image_tag membership.user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
-        <% else %>
-        <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
-        <% end %>
-        <div class='product-body'>
-          <h3><%= membership.user.first_name %> <%= membership.user.last_name %></h3>
-          <p>Status: <strong><%= membership.status %></strong></p>
-          <p><%= membership.user.job_description %></p>
-          <p><%= membership.user.education %></p>
-          <p><%= link_to "View profile", user_path(membership.user) %></p>
-          <p>
-            <!-- Conditional for "Accept/Deny" -->
-            <% if current_user == membership.user && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-            <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
-            <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
-          </p>
-          <p>
-            <!-- Conditional for "Cancel" -->
-            <% elsif @lab.memberships.find_by(user: current_user) && membership.user.joined_labs.include?(@lab) && membership.status == "pending" %>
-            <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+          <!-- Membership user profile picture -->
+          <% if membership.status == "accepted" %>
+
+            <div class="product">
+            <%= render "labs/member_profile_picture", membership: membership %>
+              <div class='product-body'>
+                <%= render "labs/member_info", membership: membership %>
+                <% if current_user == @lab.creator %>
+                  <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+                <% end %>
+              </div>
+            </div>
+
+          <% elsif membership.status == "pending" %>
+            <% if current_user == @lab.creator  %>
+              <div class="product">
+              <%= render "labs/member_profile_picture", membership: membership %>
+                <div class='product-body'>
+                  <%= render "labs/member_info", membership: membership %>
+                  <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+                </div>
+              </div>
+            <% elsif current_user == membership.user %>
+              <%= render "labs/member_profile_picture", membership: membership %>
+
+              <div class="product">
+                  <%= render "labs/member_info", membership: membership %>
+                <div class='product-body'>
+                  <p>
+                    <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+                    <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
+                  </p>
+                </div>
+              </div>
             <% end %>
-          </p>
-        </div>
-      </div>
+          <% else %>
+            <% if current_user == @lab.creator  %>
+
+              <div class="product">
+              <%= render "labs/member_profile_picture", membership: membership %>
+                <div class='product-body'>
+                  <%= render "labs/member_info", membership: membership %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
       <% end %>
     </div>
+
+
+
+
     <!-- Right -->
     <div class="col-xs-8">
       <!-- Lab banner -->
