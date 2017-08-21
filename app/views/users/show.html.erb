@@ -1,9 +1,6 @@
-<!-- <div class="container">
-</div> -->
-
 <div class="container">
   <div class="row">
-
+    <!-- Left -->
     <div class="col-xs-9">
       <div class="row">
         <div class="col-xs-12">
@@ -11,8 +8,13 @@
         </div>
       </div>
       <div class="product">
+        <!-- User avatar -->
         <div>
-          <img src="http://lorempixel.com/100/100/abstract/1/" alt="lorempixel" class="product-image hidden-xs">
+          <% if @user.avatar? %>
+          <%= cl_image_tag @user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+          <% else %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+          <% end %>
         </div>
         <div class='product-body'>
           <h2><%= @user.first_name %> <%= @user.last_name %></h2>
@@ -46,7 +48,7 @@
         <p><%= @user.research_interests %></p>
       </div>
     </div>
-
+    <!-- Right -->
     <div class="col-xs-3">
       <div>
         <h2>Lab Information</h2>
@@ -76,10 +78,9 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
-
+<!-- Links -->
 <div class="container">
   <ul class="list-unstyled list-inline">
     <li><%= link_to "Back to user index", users_path, class: "btn btn-primary"%></li>
