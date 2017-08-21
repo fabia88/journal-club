@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <!-- Form title-->
       <div class="card-form">
         <h2>Edit User Profile</h2>
-
+        <!-- Form body -->
         <div class="form-group">
           <%= simple_form_for(@user, url: profile_path) do |f| %>
           <%= f.input :first_name, class: "form-control" %>
@@ -12,31 +13,27 @@
           <%= f.input :job_description, class: "form-control" %>
           <%= f.input :education, class: "form-control" %>
           <%= f.input :research_interests, class: "form-control"%>
-        <%= f.input :avatar %>
-        <%= f.input :avatar_cache, as: :hidden %>
-          
-        <p><strong>Search Keywords</strong></p>
-        <% if @user.search_keywords %>
-        <div id="search-keywords">
-          <% @user.search_keywords.each do |search_keyword| %>
-          <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div btn btn-primary button">Remove</button></div>
+          <%= f.input :avatar %>
+          <%= f.input :avatar_cache, as: :hidden %>
+          <!-- Search keywords -->
+          <p><strong>Search Keywords</strong></p>
+          <div id="search-keywords">
+            <% @user.search_keywords.each do |search_keyword| %>
+            <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div btn btn-primary button">Remove</button></div>
             <% end %>
           </div>
-          <% end %>
         </div>
+        <!-- Form button -->
+        <button id="add-keyword" class="btn btn-primary button">Add keyword field</button>
+        <!-- Current password -->
+        <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
+        <%= f.button :submit, class: "btn btn-primary button" %>
         <% end %>
-
-          <button id="add-keyword" class="btn btn-primary button">Add keyword field</button>
-
-          <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
-          <%= f.button :submit, class: "btn btn-primary button" %>
-          <% end %>
-        </div>
-
+      </div>
+      <!-- Delete profile -->
       <h3>Cancel my account</h3>
-
       <p>Unhappy? <%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
+      <!-- Links -->
       <div>
         <ul class="list-unstyled list-inline">
           <li><%= link_to "Back to profile", user_path(@user.id) %></li>
@@ -44,11 +41,10 @@
           <li><%= link_to "Back to home", root_path %></li>
         </ul>
       </div>
-
     </div>
   </div>
 </div>
-
+<!-- JS for search keywords -->
 <%= content_for(:after_js) do %>
 <script>
   $(document).ready(function(){
