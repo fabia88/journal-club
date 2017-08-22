@@ -12,15 +12,17 @@
       <% @lab.memberships.each do |membership| %>
           <!-- Membership user profile picture -->
           <% if membership.status == "accepted" %>
-            <div class="product">
-            <%= render "labs/member_profile_picture", membership: membership %>
-              <div class='product-body'>
+            <% unless current_user == @lab.creator %>
+              <div class="product">
+                <%= render "labs/member_profile_picture", membership: membership %>
+                <div class='product-body'>
                 <%= render "labs/member_info", membership: membership %>
                 <% if current_user == @lab.creator %>
                   <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
                 <% end %>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% elsif membership.status == "pending" %>
             <% if current_user == @lab.creator  %>
               <div class="product">
