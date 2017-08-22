@@ -13,9 +13,16 @@
   }
 }
 
-#one {
+#home-info-title {
+  font-size: 46px;
+  color: $dark-gray;
+}
+#home-info-sub-header {
+  color: $blue;
+}
+#home-info-left {
   text-align: left;
 }
-#two {
+#home-info-right {
   text-align: right;
 }

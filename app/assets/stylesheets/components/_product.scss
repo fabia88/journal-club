@@ -15,8 +15,8 @@
   padding-bottom: 50px;
 }
 .product-top a{
-  background-color: $red;
-  color: white;
+  background-color: $blue;
+  color: $white;
   font-weight: 600;
   padding: 5px;
   border-radius: 2px;
@@ -39,7 +39,7 @@
   font-size: 15px;
 }
 .product-body a {
-  background-color: $red;
+  background-color: $yellow;
   color: white;
   font-weight: 600;
   padding: 5px;
@@ -47,7 +47,7 @@
 }
 
 .product-body-paper-link {
-  color: $red;
+  color: $blue;
   font-weight: 600;
 }
 
@@ -96,7 +96,7 @@
   color: $white;
 }
 .product-controls a:hover {
-  color: $red !important
+  color: $blue !important
 }
 .product-controls-hidden a {
   color: transparent;
