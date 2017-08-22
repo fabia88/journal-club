@@ -7,4 +7,8 @@ class Lab < ApplicationRecord
   has_many :posts, dependent: :destroy
   validates :name, uniqueness: true
   validates :name, :description, presence: true
+
+  def if_member?(user)
+    self.memberships.not_cancelled.find_by_user_id(user.id)
+  end
 end

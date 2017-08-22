@@ -14,7 +14,7 @@ class MembershipsController < ApplicationController
   def create
     @lab = Lab.find(params[:lab_id])
     @user = User.find_by_email(params[:membership][:email])
-    if @membership = @lab.memberships.where(user_id: @user.id).first
+    if @membership = @lab.memberships.find_by_user_id(@user.id)
       @membership.status = "pending"
     else
       @membership = Membership.new(
@@ -61,7 +61,9 @@ class MembershipsController < ApplicationController
   end
 
   def cancel
-    @membership = Membership.find(params[:id])
+    if user_id = params[:user_id]
+      @membership = Membership.find_by_user_id(user_id)
+    end
     @membership.status = "cancelled"
     @lab = @membership.lab
     if @membership.save
