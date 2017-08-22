@@ -3,13 +3,23 @@
   align-items: center;
   padding: 50px 0;
   transition: all 0.15s ease;
-  border-bottom: 1px solid #969CA1;
+  border-top: 1px solid #969CA1;
 }
 .product-last {
   display: flex;
   align-items: center;
   padding: 50px 0;
   transition: all 0.15s ease;
+}
+.product-top{
+  padding-bottom: 50px;
+}
+.product-top a{
+  background-color: $red;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 2px;
 }
 
 /* Body design */
@@ -18,18 +28,27 @@
 }
 .product-body h3 {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 0;
 }
 .product-body p {
   font-weight: lighter;
   color: $gray;
-  margin-bottom: 0;
+  margin-bottom: 10;
+  font-weight: 500;
+  font-size: 15px;
 }
 .product-body a {
-  font-weight: lighter;
+  background-color: $red;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.product-body-paper-link {
   color: $red;
-  margin-bottom: 0;
+  font-weight: 600;
 }
 
 /* Product image */
@@ -89,7 +108,7 @@
 /* Hover effects */
 .product:hover {
   background: $white;
-  cursor: pointer;
+  cursor: auto;
 }
 .product-upvote:hover, .product-upvote.product-upvote-upvoted {
   color: $blue;
