@@ -2,7 +2,7 @@ class GetDataForMostRecentPapersService
   require "open-uri"
   require "nokogiri"
   require 'json'
-  def initialize(imported_papers_count = 100)
+  def initialize(imported_papers_count)
     @imported_papers_count = imported_papers_count
   end
 
