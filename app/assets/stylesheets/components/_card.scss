@@ -3,7 +3,7 @@
   margin: 100px 0;
   background-color: $light-gray;
   padding: 50px;
-  box-shadow: 5px 5px 2px rgba(63, 64, 69, 0.4);
+  box-shadow: 5px 5px 2px rgba(63, 64, 69, 0.3);
   input, textarea {
     border-radius: 5px;
   }
@@ -19,6 +19,10 @@
     margin-bottom: 30px;
     text-align: center;
   }
+  a:hover {
+    text-decoration: none;
+    color: $yellow;
+  }
 }
 #new-post-form {
   abbr {
@@ -30,7 +34,7 @@
 .card {
   height: 175px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  color: black;
+  color: $black;
   position: relative;
 }
 .card-user {
