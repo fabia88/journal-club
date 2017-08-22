@@ -24,16 +24,22 @@
     color: $yellow;
   }
 }
-#new-post-form {
+#new-form {
   abbr {
     display: none;
   }
 }
 // search
 .card-search {
-  input {
+  input, select {
     border-radius: 5px;
     margin: 10px 0;
+    display: block;
+    width: 100%;
+  }
+  #checkbox {
+    display: inline;
+    width: auto;
   }
   .button {
     margin-top: 20px;
