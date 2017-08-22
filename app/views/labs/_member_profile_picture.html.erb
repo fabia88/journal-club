@@ -1,5 +1,9 @@
 <% if membership.user.avatar? %>
-<%= cl_image_tag membership.user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+  <%= link_to user_path(membership.user.id) do %>
+    <%= cl_image_tag membership.user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+  <% end %>
 <% else %>
-<%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+  <%= link_to user_path(membership.user.id) do %>
+    <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+  <% end %>
 <% end %>
