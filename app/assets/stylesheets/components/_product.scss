@@ -3,8 +3,25 @@
   align-items: center;
   padding: 50px 0;
   transition: all 0.15s ease;
-  border-top: 1px solid #969CA1;
+  background-color: white;
+  padding: 40px;
+  margin: 20px 0px;
+  border: 1px solid #d4d4d4;
+  box-shadow: 2px 2px 8px rgba(1,1,1,0.2);
+  li.emphasis {
+    color: #a9a1a1;
+  }
+  ul {
+    width: 100%;
+  }
+  .date {
+    font-style: italic;
+    width: 100%;
+  }
 }
+
+
+
 .product-last {
   display: flex;
   align-items: center;
@@ -25,7 +42,12 @@
 /* Body design */
 .product-body {
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
+
+
 .product-body h3 {
   font-weight: bold;
   font-size: 20px;
@@ -40,10 +62,12 @@
   font-size: 15px;
 }
 .product-body a {
-  color: $red;
+  text-decoration: none;
+  padding: 5px 30px;
+  background-color: $red;
+  color: white;
   font-weight: 600;
-  // padding: 5px;
-  // border-radius: 2px;
+  border-radius: 2px;
 }
 
 .product-body-paper-link {
