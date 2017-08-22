@@ -20,8 +20,6 @@
   }
 }
 
-
-
 .product-last {
   display: flex;
   align-items: center;
@@ -64,8 +62,8 @@
 .product-body a {
   text-decoration: none;
   padding: 5px 30px;
-  background-color: $red;
-  color: white;
+  background-color: $blue;
+  color: $white;
   font-weight: 600;
   border-radius: 2px;
 }
