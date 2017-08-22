@@ -12,17 +12,17 @@
       <% @available_members.each do |membership| %>
       <!-- Membership user profile picture -->
       <% if membership.status == "accepted" %>
-      <%# unless current_user == @lab.creator %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
           <%= render "labs/member_info", membership: membership %>
           <% if current_user == @lab.creator %>
-          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+            <% unless membership.user == current_user %>
+              <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+            <% end %>
           <% end %>
         </div>
       </div>
-      <%# end %>
       <% elsif membership.status == "pending" %>
       <% if current_user == @lab.creator || membership.user  %>
       <div class="product">
@@ -69,11 +69,12 @@
       <% end %>
       <!-- Lab links -->
       <div class="product-body a">
-        <%= link_to "Edit lab", edit_lab_path(@lab) %>
         <!-- Conditional for "Archive lab" -->
         <% if current_user.created_labs.include?(@lab) %>
         <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
         <% end %>
+        <%= link_to "Edit lab", edit_lab_path(@lab) %>
+        <%= link_to "Leave lab", cancel_membership_path, method: "patch" %>
       </div>
       <!-- Lab description -->
       <div class="padded color-body">
