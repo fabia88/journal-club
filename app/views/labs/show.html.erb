@@ -69,12 +69,14 @@
       <% end %>
       <!-- Lab links -->
       <div class="product-body a">
+      <ul class="list-inline padded">
         <!-- Conditional for "Archive lab" -->
         <% if current_user.created_labs.include?(@lab) %>
-        <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
+        <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
         <% end %>
-        <%= link_to "Edit lab", edit_lab_path(@lab) %>
-        <%= link_to "Leave lab", cancel_membership_path, method: "patch" %>
+        <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
+        <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+        </ul>
       </div>
       <!-- Lab description -->
       <div class="padded color-body">
