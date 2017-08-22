@@ -33,15 +33,14 @@
 .message-body {
   padding-left: 10px;
   font-size: 18px;
-  color: rgba(0,0,0,0.7);
+  color: $gray;
 }
 .message-body {
   padding-left: 20px;
-  color: rgba(0,0,0,0.4);
+  color: $gray;
 }
 .message-body strong{
-  color: rgba(0,0,0,0.9);
-  color: rgba(0,0,0,0.9);
+  color: $gray;
 }
 .message-body p {
   margin: 0px 0;
