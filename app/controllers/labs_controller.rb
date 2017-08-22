@@ -1,4 +1,6 @@
 class LabsController < ApplicationController
+  before_action :set_lab, only: [:show, :edit, :update, :archive]
+
   def index
     if current_user
       @labs = current_user.joined_labs
@@ -9,13 +11,12 @@ class LabsController < ApplicationController
   end
 
   def show
-    if current_user
-      @lab = Lab.find(params[:id])
+    if current_user && @lab.if_member?(current_user)
       @post = Post.new
       @available_members = @lab.memberships.accepted_members
     else
       redirect_to root_path
-      flash[:alert] = "You must be logged in."
+      flash[:alert] = "You must be logged in or be part of this lab."
     end
   end
 
@@ -39,7 +40,6 @@ class LabsController < ApplicationController
   end
 
   def edit
-    @lab = Lab.find(params[:id])
     if @lab.archived?
       redirect_to root_path
       flash[:alert] = "Cannot edit an archived lab."
@@ -50,7 +50,6 @@ class LabsController < ApplicationController
   end
 
   def update
-    @lab = Lab.find(params[:id])
     if @lab.update(lab_params)
       redirect_to lab_path(@lab)
       flash[:notice] = "Lab successfully updated."
@@ -60,7 +59,6 @@ class LabsController < ApplicationController
   end
 
   def archive
-    @lab = Lab.find(params[:id])
     @lab.archived = true
     @lab.save
     redirect_to user_path(current_user)
@@ -70,5 +68,9 @@ class LabsController < ApplicationController
   private
   def lab_params
     params.require(:lab).permit(:name, :description, :photo, :photo_cache)
+  end
+
+  def set_lab
+    @lab = Lab.find(params[:id])
   end
 end
