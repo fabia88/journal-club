@@ -12,7 +12,7 @@
       <% @lab.memberships.each do |membership| %>
       <!-- Membership user profile picture -->
       <% if membership.status == "accepted" %>
-      <% unless current_user == @lab.creator %>
+      <%# unless current_user == @lab.creator %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
@@ -22,7 +22,7 @@
           <% end %>
         </div>
       </div>
-      <% end %>
+      <%# end %>
       <% elsif membership.status == "pending" %>
       <% if current_user == @lab.creator  %>
       <div class="product">
@@ -84,7 +84,7 @@
       <!-- Create post -->
       <div>
         <h3>New Post</h3>
-        <div class="form-group">
+        <div class="form-group" id="new-post-form">
           <%= simple_form_for([@lab, @post]) do |f|%>
           <%= f.input :content, class: "form-control" %>
           <%= f.button :submit, class: "btn btn-primary button" %>
