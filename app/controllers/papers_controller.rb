@@ -1,22 +1,25 @@
 class PapersController < ApplicationController
   def index
-    @keywords = current_user.search_keywords
+    # keywords
+    @keywords = params[:keywords].presence || current_user.search_keywords
     if @keywords.nil?
       @papers = []
     else
-      @papers = []
-      @keywords.each do |word|
-        Paper.where("title like ?", "%#{word}%").each do |paper|
-          @papers << paper
-        end
-        Paper.where("abstract like ?", "%#{word}%").each do |paper|
-          @papers << paper
-        end
+      conditions = []
+      conditions_words = {}
+      @keywords.each_with_index do |word, index|
+        conditions << "title like :word_#{index} OR abstract like :word_#{index}"
+        conditions_words["word_#{index}".to_sym] = "%#{word}%"
       end
-      return @papers
+      conditions = conditions.join(" OR ")
+      @papers = Paper.where(conditions, conditions_words)
     end
-    if params[:search].present?
-      @papers = @papers.select{|paper| paper.title.downcase.include?(params[:search].downcase)}
+    if params[:date].present?
+      @papers = @papers.where(date: params[:date])
+    end
+    @sources = @papers.distinct.pluck(:source)
+    if params[:source].present?
+      @papers = @papers.where(source: params[:source])
     end
   end
 

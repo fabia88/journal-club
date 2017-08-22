@@ -1,30 +1,50 @@
 <div class="container">
   <div class="row">
-
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h2>Papers</h2>
-    </div>
-
-    <% @papers.each_with_index do |paper, i| %>
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <% if i == @papers.length - 1 %>
-      <div class="product-last">
-      <% else %>
-      <div class="product">
-      <% end %>
-        <div class='product-body'>
-          <h3><%= paper.title %></h3>
-          <ul class="list-inline">
-            <% paper.authors.each do |author| %>
-            <li><%= author.name %></li>
+    <div class="col-xs-4">
+      <div class="card-search">
+      <h3>Refine your search</h3>
+        <%= form_tag papers_path, method: :get, class: "form-group" do%>
+        <% current_user.search_keywords.each do |word| %>
+        <label for="checkbox"><input class="form-controll" type="checkbox" id="checkbox" name="keywords[]" value="<%= word %>" <%='checked' if @keywords.include?(word) %>
+          ><%= " " + word.capitalize %></label><br>
+          <% end %>
+          <input class="form-controll" type="date" name="date" value="<%= params[:date] %>">
+          <select name="source" id="">
+            <option value="">All sources</option>
+            <% @sources.each do |source| %>
+            <option value="<%= source %>" <%= "selected" if params[:source] == source%>>
+              <%= source %>
+            </option>
             <% end %>
-          </ul>
-          <p><%= paper.date %> | <%= paper.source %> | <%= paper.reference %></p>
-          <%= link_to "", paper_path(paper), class: "card-link" %>
+          </select>
+          <input type="submit" value="Apply" class="btn btn-primary button">
+          <% end %>
         </div>
       </div>
-    </div>
-    <% end %>
 
+      <div class="col-xs-8">
+        <% @papers.each_with_index do |paper, index| %>
+        <div class='product'>
+          <div class="product-body">
+            <h3><%= paper.title %></h3>
+            <ul class="list-inline">
+              <% paper.authors.each_with_index do |author, index| %>
+              <% if index.even? %>
+              <li><%= author.name %></li>
+              <% else %>
+              <li class="emphasis"><%= author.name %></li>
+              <% end %>
+              <% end %>
+            </ul>
+            <p class="date"><%= paper.date %> | <%= paper.source %> | doi: <%= paper.reference %></p>
+            <%= link_to "Go to paper", paper_path(paper) %>
+          </div>
+        </div>
+
+
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+
+

@@ -25,7 +25,17 @@
     display: none;
   }
 }
-
+// search
+.card-search {
+  input {
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  .button {
+    margin-top: 20px;
+    display: block;
+  }
+}
 // products
 .card {
   height: 175px;
