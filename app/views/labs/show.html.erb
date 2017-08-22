@@ -2,55 +2,58 @@
   <div class="row">
     <!-- Left -->
     <div class="col-xs-4">
-      <h3>Lab memberships</h3>
+      <div class="product-top">
+        <h3>Lab memberships</h3>
 
-      <% if current_user == @lab.creator %>
+        <% if current_user == @lab.creator %>
         <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
-      <% end %>
-
+        <% end %>
+      </div>
       <% @lab.memberships.each do |membership| %>
-          <!-- Membership user profile picture -->
-          <% if membership.status == "accepted" %>
-            <div class="product">
-            <%= render "labs/member_profile_picture", membership: membership %>
-              <div class='product-body'>
-                <%= render "labs/member_info", membership: membership %>
-                <% if current_user == @lab.creator %>
-                  <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
-                <% end %>
-              </div>
-            </div>
-          <% elsif membership.status == "pending" %>
-            <% if current_user == @lab.creator  %>
-              <div class="product">
-              <%= render "labs/member_profile_picture", membership: membership %>
-                <div class='product-body'>
-                  <%= render "labs/member_info", membership: membership %>
-                  <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
-                </div>
-              </div>
-            <% elsif current_user == membership.user %>
-              <%= render "labs/member_profile_picture", membership: membership %>
-              <div class="product">
-                  <%= render "labs/member_info", membership: membership %>
-                <div class='product-body'>
-                  <p>
-                    <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
-                    <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
-                  </p>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <% if current_user == @lab.creator  %>
-              <div class="product">
-              <%= render "labs/member_profile_picture", membership: membership %>
-                <div class='product-body'>
-                  <%= render "labs/member_info", membership: membership %>
-                </div>
-              </div>
-            <% end %>
+      <!-- Membership user profile picture -->
+      <% if membership.status == "accepted" %>
+      <%# unless current_user == @lab.creator %>
+      <div class="product">
+        <%= render "labs/member_profile_picture", membership: membership %>
+        <div class='product-body'>
+          <%= render "labs/member_info", membership: membership %>
+          <% if current_user == @lab.creator %>
+          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
           <% end %>
+        </div>
+      </div>
+      <%# end %>
+      <% elsif membership.status == "pending" %>
+      <% if current_user == @lab.creator  %>
+      <div class="product">
+        <%= render "labs/member_profile_picture", membership: membership %>
+        <div class='product-body'>
+          <%= render "labs/member_info", membership: membership %>
+          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+        </div>
+      </div>
+      <% elsif current_user == membership.user %>
+      <%= render "labs/member_profile_picture", membership: membership %>
+      <div class="product">
+        <%= render "labs/member_info", membership: membership %>
+        <div class='product-body'>
+          <p>
+            <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+            <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+      <% else %>
+      <% if current_user == @lab.creator  %>
+      <div class="product">
+        <%= render "labs/member_profile_picture", membership: membership %>
+        <div class='product-body'>
+          <%= render "labs/member_info", membership: membership %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
       <% end %>
     </div>
 
@@ -74,14 +77,14 @@
       <div>
         <h3>Description</h3>
         <p><%= @lab.description %></p>
-        <h4>
+        <h5>
           Last updated: <%= @lab.updated_at.to_formatted_s(:short) %> | Created at: <%= @lab.created_at.to_formatted_s(:short) %>
-        </h4>
+        </h5>
       </div>
       <!-- Create post -->
       <div>
         <h3>New Post</h3>
-        <div class="form-group">
+        <div class="form-group" id="new-post-form">
           <%= simple_form_for([@lab, @post]) do |f|%>
           <%= f.input :content, class: "form-control" %>
           <%= f.button :submit, class: "btn btn-primary button" %>
@@ -105,17 +108,16 @@
           </div>
           <div class="message-body">
             <p><%= post.content %></p>
+            <% if post.paper %>
+            <!-- If post has paper_id linked -->
+              <div class="product-body-paper-link">
+                <%= link_to paper_path(post.paper) do %>
+                  <%= post.paper.title %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
-        <!-- If post has paper_id linked -->
-        <% if post.paper %>
-        <div class="product-last">
-          <div class='product-body'>
-            <h3><%= post.paper.title %></h3>
-            <%= link_to "Go to paper", paper_path(post.paper) %>
-          </div>
-        </div>
-        <% end %>
         <% end %>
       </div>
     </div>
