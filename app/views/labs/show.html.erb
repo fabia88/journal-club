@@ -113,9 +113,10 @@
         <!-- If post has paper_id linked -->
         <% if post.paper %>
         <div class="product-last">
-          <div class='product-body'>
-            <h3><%= post.paper.title %></h3>
-            <%= link_to "Go to paper", paper_path(post.paper) %>
+          <div class="product-body-paper-link">
+            <%= link_to paper_path(post.paper) do %>
+              <%= post.paper.title %>
+            <% end %>
           </div>
         </div>
         <% end %>
