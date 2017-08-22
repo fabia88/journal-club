@@ -28,12 +28,12 @@
   padding: 50px 0;
   transition: all 0.15s ease;
 }
-.product-top{
+.product-top {
   padding-bottom: 50px;
 }
-.product-top a{
-  background-color: $red;
-  color: white;
+
+.product-top a {
+  color: $red;
   font-weight: 600;
   padding: 5px;
   border-radius: 2px;
@@ -52,6 +52,7 @@
   font-weight: bold;
   font-size: 20px;
   margin-top: 0;
+  color: $gray;
 }
 .product-body p {
   font-weight: lighter;
@@ -70,8 +71,9 @@
 }
 
 .product-body-paper-link {
-  color: $red;
+  color: $blue;
   font-weight: 600;
+  font-size: 15px;
 }
 
 /* Product image */
@@ -119,7 +121,7 @@
   color: $white;
 }
 .product-controls a:hover {
-  color: $red !important
+  color: $blue !important
 }
 .product-controls-hidden a {
   color: transparent;

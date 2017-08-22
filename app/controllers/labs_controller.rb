@@ -12,6 +12,7 @@ class LabsController < ApplicationController
     if current_user
       @lab = Lab.find(params[:id])
       @post = Post.new
+      @available_members = @lab.memberships.accepted_members
     else
       redirect_to root_path
       flash[:alert] = "You must be logged in."

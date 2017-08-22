@@ -10,13 +10,19 @@
   }
   img {
     border-radius: 5px;
-    box-shadow: 5px 5px 2px rgba(63, 64, 69, 0.4);
   }
 }
 
-#one {
+#home-info-title {
+  font-size: 46px;
+  color: $dark-gray;
+}
+#home-info-sub-header {
+  color: $blue;
+}
+#home-info-left {
   text-align: left;
 }
-#two {
+#home-info-right {
   text-align: right;
 }

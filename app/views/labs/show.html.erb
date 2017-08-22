@@ -2,33 +2,34 @@
   <div class="row">
     <!-- Left -->
     <div class="col-xs-4">
-      <div class="product-top">
+      <div class="product-top color-body">
         <h3>Lab memberships</h3>
 
         <% if current_user == @lab.creator %>
         <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
         <% end %>
       </div>
-      <% @lab.memberships.each do |membership| %>
+      <% @available_members.each do |membership| %>
       <!-- Membership user profile picture -->
       <% if membership.status == "accepted" %>
-      <%# unless current_user == @lab.creator %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
           <%= render "labs/member_info", membership: membership %>
           <% if current_user == @lab.creator %>
-          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+            <% unless membership.user == current_user %>
+              <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+            <% end %>
           <% end %>
         </div>
       </div>
-      <%# end %>
       <% elsif membership.status == "pending" %>
-      <% if current_user == @lab.creator  %>
+      <% if current_user == @lab.creator || membership.user  %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
           <%= render "labs/member_info", membership: membership %>
+          <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
           <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
         </div>
       </div>
@@ -45,7 +46,7 @@
       </div>
       <% end %>
       <% else %>
-      <% if current_user == @lab.creator  %>
+      <% if current_user == @lab.creator || membership.user %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
@@ -55,10 +56,11 @@
       <% end %>
       <% end %>
       <% end %>
+
     </div>
 
     <!-- Right -->
-    <div class="col-xs-8">
+    <div class="col-xs-8 color-body">
       <!-- Lab banner -->
       <h2><%= @lab.name %></h2>
       <% if @lab.photo? %>
@@ -66,15 +68,16 @@
       </div>
       <% end %>
       <!-- Lab links -->
-      <div>
-        <%= link_to "Edit lab", edit_lab_path(@lab) %>
+      <div class="product-body a">
         <!-- Conditional for "Archive lab" -->
         <% if current_user.created_labs.include?(@lab) %>
         <%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %>
         <% end %>
+        <%= link_to "Edit lab", edit_lab_path(@lab) %>
+        <%= link_to "Leave lab", cancel_membership_path, method: "patch" %>
       </div>
       <!-- Lab description -->
-      <div>
+      <div class="padded color-body">
         <h3>Description</h3>
         <p><%= @lab.description %></p>
         <h5>
@@ -83,8 +86,8 @@
       </div>
       <!-- Create post -->
       <div>
-        <h3>New Post</h3>
-        <div class="form-group" id="new-post-form">
+        <div class="form-group padded color-body" id="new-post-form">
+          <h3>New Post</h3>
           <%= simple_form_for([@lab, @post]) do |f|%>
           <%= f.input :content, class: "form-control" %>
           <%= f.button :submit, class: "btn btn-primary button" %>
@@ -93,28 +96,28 @@
       </div>
       <!-- Index posts -->
       <div>
-        <h3>Posts</h3>
+        <h3 class="padded color-body">Posts</h3>
         <% @lab.posts.sort_by { |post| post.created_at}.reverse.each do |post|%>
         <div class="message">
           <!-- Cloudinary image tags -->
           <% if post.user.avatar? %>
-          <%= cl_image_tag post.user.avatar, width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <%= cl_image_tag post.user.avatar, width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs avatar-padding", alt: "No profile picture" %>
           <% else %>
-          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs", alt: "No profile picture" %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 50, height: 50, gravity: :face, crop: :thumb, class: "avatar-large hidden-xs avatar-padding", alt: "No profile picture" %>
           <% end %>
           <div class="message-name">
             <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
-            <p><%= post.created_at %></p>
+            <!-- <p><%= post.created_at %></p> -->
           </div>
           <div class="message-body">
             <p><%= post.content %></p>
             <% if post.paper %>
             <!-- If post has paper_id linked -->
-              <div class="product-body-paper-link">
-                <%= link_to paper_path(post.paper) do %>
-                  <%= post.paper.title %>
-                <% end %>
-              </div>
+            <div class="product-body-paper-link">
+              <%= link_to paper_path(post.paper) do %>
+              <%= post.paper.title %>
+              <% end %>
+            </div>
             <% end %>
           </div>
         </div>

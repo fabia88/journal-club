@@ -14,12 +14,17 @@ class MembershipsController < ApplicationController
   def create
     @lab = Lab.find(params[:lab_id])
     @user = User.find_by_email(params[:membership][:email])
-    @membership = Membership.new(
-      lab: @lab,
-      user: @user,
-      status: "pending"
-      )
-    if @lab.memberships.find_by(user: @user)
+    if @membership = @lab.memberships.where(user_id: @user.id).first
+      @membership.status = "pending"
+    else
+      @membership = Membership.new(
+        lab: @lab,
+        user: @user,
+        status: "pending"
+        )
+    end
+
+    if @lab.memberships.not_cancelled.find_by(user: @user)
       redirect_to root_path
       flash[:alert] = "This user is already a member."
     elsif @membership.save
