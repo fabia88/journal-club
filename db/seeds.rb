@@ -43,7 +43,8 @@ papers.each do |paper|
   authors = paper.delete("authors")
   paper_obj = Paper.create!(paper)
   authors.each do |author|
-    author_obj = Author.create(name: author["name"])
+    author_obj = Author.find_by_name(author["name"])
+    author_obj ||= Author.create!(name: author["name"])
     PaperAuthor.create(paper: paper_obj, author: author_obj)
   end
 end
