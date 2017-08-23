@@ -11,9 +11,10 @@ class Paper < ApplicationRecord
 
 
 
-    user_author_name = "#{user.last_name} #{user.first_name[0]}"
-    matching_names = author.name == user_author_name
+    user_author_name = "#{user.last_name}"
+    matching_names = author.name.include?(user_author_name)
 
     matching_names && is_user_not_already_author
   end
 end
+

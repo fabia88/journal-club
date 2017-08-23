@@ -3,7 +3,7 @@ class MembershipsController < ApplicationController
     @lab = Lab.find(params[:lab_id])
     @membership = Membership.new
     if !current_user.joined_labs.include?(@lab) || !(current_user.memberships.find_by_lab_id(@lab).status == "accepted")
-      redirect_to root_path
+      redirect_to lab_path(@lab)
       flash[:alert] = "Only accepted members can invite."
     elsif @lab.archived == true
       redirect_to root_path
@@ -61,9 +61,9 @@ class MembershipsController < ApplicationController
   end
 
   def cancel
-    if user_id = params[:user_id]
-      @membership = Membership.find_by_user_id(user_id)
-    end
+    # if user_id = params[:user_id]
+      @membership = Membership.find(params[:id])
+    # end
     @membership.status = "cancelled"
     @lab = @membership.lab
     if @membership.save
