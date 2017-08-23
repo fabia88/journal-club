@@ -2,7 +2,7 @@ class PapersController < ApplicationController
   def index
     # keywords
     @keywords = params[:keywords].presence || current_user.search_keywords
-    if @keywords.nil?
+    if @keywords.empty?
       @papers = []
     else
       conditions = []
@@ -13,13 +13,13 @@ class PapersController < ApplicationController
       end
       conditions = conditions.join(" OR ")
       @papers = Paper.where(conditions, conditions_words)
-    end
-    if params[:date].present?
-      @papers = @papers.where(date: params[:date])
-    end
-    @sources = @papers.distinct.pluck(:source)
-    if params[:source].present?
-      @papers = @papers.where(source: params[:source])
+      if params[:date].present?
+        @papers = @papers.where(date: params[:date])
+      end
+      @sources = @papers.distinct.pluck(:source)
+      if params[:source].present?
+        @papers = @papers.where(source: params[:source])
+      end
     end
   end
 

@@ -49,7 +49,7 @@
 <script>
   $(document).ready(function(){
     $("#add-keyword").click(function(){
-      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button>Remove</button></div>'
+      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button class="btn btn-primary button">Remove</button></div>'
       $("#search-keywords").append(div_html);
       $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
         $div = $(this).parent();
