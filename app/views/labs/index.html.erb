@@ -20,10 +20,23 @@
 
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <% if !current_user.joined_labs.first %>
-      <p>Looks like you aren't in any labs.</p>
-      <p>Would you like to create one?</p>
+      <div class="no-lab-card">
+        <div class="content">
+          <div class="left">
+            <p>Looks like you aren't in any labs.</p>
+            <p>Would you like to create one?</p>
+          </div>
+          <div class="right">
+
+            <%= image_tag 'lab.png' %>
+          </div>
+        </div>
+        <%= link_to new_lab_path, class: "button-brand-blue" do %>
+        <i class="fa fa-check"></i>
+        Create a Lab
+        <% end %>
+      </div>
       <% end %>
-      <%= link_to "Create a Lab", new_lab_path %>
     </div>
 
   </div>
