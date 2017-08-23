@@ -1,91 +1,70 @@
 <div class="container">
   <div class="row">
-    <!-- Left -->
-    <div class="col-xs-9">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>User Profile</h2>
-        </div>
-      </div>
-      <div class="product">
-        <!-- User avatar -->
-        <div>
+    <div class="col-xs-4">
+      <div class="product-profile">
+        <div id="profile-info">
           <% if @user.avatar? %>
           <%= cl_image_tag @user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
           <% else %>
           <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
           <% end %>
-        </div>
-        <div class='product-body'>
-          <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+          <h2><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h2>
           <p><%= @user.email %></p>
-          <p><%= @user.job_description %></p>
-          <p><%= @user.education %></p>
-          <div>
-            <!-- Conditional for "Edit profile" -->
-            <% if current_user == @user %>
-            <%= link_to "Edit profile", edit_profile_path, class: "btn btn-primary button" %>
-            <% end %>
-
-
-            <div>
-              <% if @user.author %>
-              <strong>
-                <%= @user.author.name %>
-              </strong>
-              <ul>
-               <% @user.author.papers.each do |paper| %>
-               <li>
-                 <%= link_to paper.title, paper_path(paper) %>
-               </li>
-               <% end %>
-               <% end %>
-             </ul>
-           </div>
-         </div>
-       </div>
-     </div>
-     <div>
-      <h3>Research Interests</h3>
-      <p><%= @user.research_interests %></p>
-    </div>
-  </div>
-  <!-- Right -->
-  <div class="col-xs-3">
-    <div>
-      <h2>Lab Information</h2>
-    </div>
-    <div>
-      <div>
+          <% if current_user == @user %>
+          <%= link_to "Edit profile", edit_profile_path, class: "btn btn-primary button" %>
+          <% end %>
+        </div>
         <!-- Conditional for current user doesn't have labs -->
-        <% if @user == current_user && !@user.joined_labs.first %>
-        <p>Looks like you aren't in any labs.</p>
-        <p>Would you like to create one?</p>
-        <%= link_to "Create a Lab", new_lab_path %>
-        <!-- Conditional for user doesn't have labs -->
-        <% elsif !@user.joined_labs.first %>
-        <p>Looks like <%= @user.first_name %> isn't in any labs.</p>
-        <!-- Conditional for user has labs -->
-        <% elsif @user.joined_labs.first %>
-        <% @user.joined_labs.each do |lab| %>
-        <div class="product">
-          <div class='product-body'>
-            <h3><%= lab.name %></h3>
-            <p>Status: <% if !lab.archived? %> Active <% else %> Archived <% end %></p>
+        <div id="lab-info">
+          <h3>Lab Information</h3>
+          <% if @user == current_user && !@user.joined_labs.first %>
+          <p>Looks like you aren't in any labs.</p>
+          <%= link_to "Create a Lab", new_lab_path %>
+          <!-- Conditional for user doesn't have labs -->
+          <% elsif !@user.joined_labs.first %>
+          <p>Looks like <%= @user.first_name %> isn't in any labs.</p>
+          <!-- Conditional for user has labs -->
+          <% elsif @user.joined_labs.first %>
+          <% @user.joined_labs.each do |lab| %>
+          <% if !lab.archived? %>
+          <div>
+            <h5><%= lab.name %></h5>
             <%= link_to "Go to lab", lab_path(lab) %>
           </div>
+          <% end %>
+          <% end %>
+          <% end %>
         </div>
-        <% end %>
-        <% end %>
       </div>
     </div>
-  </div>
+    <div class="col-xs-8">
+      <div id="career-info">
+        <div class="padded">
+          <h3>Job Description</h3>
+          <p><%= @user.job_description %></p>
+        </div>
+        <div class="padded">
+          <h3>Education</h3>
+          <p><%= @user.education %></p>
+        </div>
+        <div class="padded">
+          <h3>Research Interests</h3>
+          <p><%= @user.research_interests %></p>
+        </div>
+        <div class="padded">
+          <% if @user.author %>
+          <h3>Papers</h3>
+          <ul>
+           <% @user.author.papers.each do |paper| %>
+           <li>
+             <%= link_to paper.title, paper_path(paper) %>
+           </li>
+           <% end %>
+           <% end %>
+         </ul>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
-</div>
-<!-- Links -->
-<div class="container">
-  <ul class="list-unstyled list-inline">
-    <li><%= link_to "Back to user index", users_path, class: "btn btn-primary"%></li>
-    <li><%= link_to "Back to home", root_path, class: "btn btn-primary"%></li>
-  </ul>
-</div>
+<div class="container padded-button"><%= link_to "User index", users_path, class: "btn btn-primary"%></div>
