@@ -28,7 +28,7 @@
           <% @user.joined_labs.each do |lab| %>
           <% if !lab.archived? %>
           <div>
-            <h5><%= lab.name %></h5>
+            <h5><%= lab.name.capitalize %></h5>
             <%= link_to "Go to lab", lab_path(lab) %>
           </div>
           <% end %>
