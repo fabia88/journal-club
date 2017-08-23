@@ -11,7 +11,8 @@ class LabsController < ApplicationController
   end
 
   def show
-    if current_user && @lab.if_member?(current_user)
+    if current_user
+      # && @lab.if_member?(current_user)
       @post = Post.new
       @available_members = @lab.memberships.accepted_members
     else
@@ -44,7 +45,7 @@ class LabsController < ApplicationController
       redirect_to root_path
       flash[:alert] = "Cannot edit an archived lab."
     elsif !current_user.joined_labs.include?(@lab) || !(current_user.memberships.find_by_lab_id(@lab).status == "accepted")
-      redirect_to root_path
+      redirect_to lab_path(@lab)
       flash[:alert] = "Only accepted members can edit."
     end
   end

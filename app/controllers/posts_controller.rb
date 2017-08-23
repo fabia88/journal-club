@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post.lab = @lab
     @post.paper = Paper.find(params[:paper_id]) if params[:paper_id]
     if !current_user.joined_labs.include?(@lab) || !(current_user.memberships.find_by_lab_id(@lab).status == "accepted")
-      redirect_to root_path
+      redirect_to lab_path(@lab)
       flash[:alert] = "Only accepted members can post."
     elsif @lab.archived == true
       redirect_to root_path
