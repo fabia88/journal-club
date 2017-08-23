@@ -2,14 +2,14 @@
   <div class="row">
 
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <h2><%= current_user.first_name %>'s labs</h2>
+      <h2><%= current_user.first_name.capitalize %>'s labs</h2>
     </div>
 
     <% @labs.each do |lab| %>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="product">
         <div class='product-body'>
-          <h3><%= lab.name %> <% if lab.creator == current_user %>(Creator)<% end %></h3>
+          <h3><%= lab.name.capitalize %> <% if lab.creator == current_user %>(Creator)<% end %></h3>
           <p>Lab status: <strong><% if !lab.archived? %> active <% else %> archived <% end %></strong></p>
           <p>Membership status: <strong><%= current_user.memberships.find_by_lab_id(lab.id).status %></strong></p>
           <%= link_to "", lab_path(lab), class: "card-link" %>
