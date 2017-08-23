@@ -11,7 +11,7 @@ class LabsController < ApplicationController
   end
 
   def show
-    if current_user && @lab.if_member?(current_user)
+    if current_user
       @post = Post.new
       @available_members = @lab.memberships.accepted_members
     else
