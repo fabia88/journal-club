@@ -9,16 +9,19 @@
     <div class="col-xs-12 col-sm-3">
       <div class="product product-small">
         <div class='product-body'>
+          <% if user.avatar? %>
+          <%= cl_image_tag user.avatar, width: 150, height: 150, crop: "fill", class: "product-image hidden-xs", alt: "No profile picture" %>
+          <% else %>
+          <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+          <% end %>
           <h3><%= user.first_name.capitalize + " " + user.last_name.capitalize %></h3>
           <p><%= user.email %></p>
           <p><%#= user.job_description %></p>
           <p><%#= user.research_interests %></p>
           <%= link_to "", user_path(user.id), class: "card-link"%>
-              <%#= cl_image_tag user.avatar, width: 10, height: 10, class: "card-user hidden-xs", alt: "No profile picture" %>
         </div>
       </div>
     </div>
     <% end %>
-
   </div>
 </div>

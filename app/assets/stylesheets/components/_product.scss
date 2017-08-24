@@ -6,8 +6,8 @@
   background-color: white;
   padding: 40px;
   margin: 20px 0px;
-  border: 1px solid #d4d4d4;
-  box-shadow: 2px 2px 8px rgba(1,1,1,0.2);
+  border: 0px solid #d4d4d4;
+  box-shadow: 0px 0px 60px rgba(1,1,1,0.1);
   li.emphasis {
     color: #a9a1a1;
   }
@@ -53,7 +53,17 @@
 }
 
 .product.product-small {
-  height: 220px;
+  height: 300px;
+  text-align: center;
+  .product-image {
+    border-radius: 50%;
+    min-width: 150px;
+    width: 150px;
+    margin-bottom: 15px;
+  }
+  .product-body {
+    align-items: center;
+  }
 }
 
 .product-last {
