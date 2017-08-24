@@ -20,6 +20,7 @@ class PapersController < ApplicationController
       if params[:source].present?
         @papers = @papers.where(source: params[:source])
       end
+      @papers = @papers.select { |paper| paper.date }.sort_by { |paper| paper.date}.reverse
     end
   end
 
