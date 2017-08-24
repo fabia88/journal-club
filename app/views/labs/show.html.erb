@@ -1,12 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-4 color-body">
+    <div class="col-xs-12 color-body">
       <h2><%= @lab.name %></h2>
     </div>
     <!-- Left -->
-    <div class="col-xs-12 col-sm-4>
+    <div class="col-xs-12 col-md-6 col-lg-4">
       <div class="product-body">
-        <h2>Lab memberships</h2>
         <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
       </div>
 
@@ -64,7 +63,7 @@
     </div>
 
     <!-- Right -->
-    <div class="col-xs-12 col-sm-8 color-body">
+    <div class="col-xs-12 col-md-6 col-lg-8 color-body">
       <!-- Lab banner -->
       <% if @lab.photo? %>
       <div class="banner banner-40vh" style="background-image: url(<%= cl_image_path @lab.photo, height: 300, width: 400, crop: :fill, alt: "Lab photo" ; %>);">
