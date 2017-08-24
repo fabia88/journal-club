@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-sm-4">
       <div class="card-search">
       <h3>Refine your search</h3>
         <%= form_tag papers_path, method: :get, class: "form-group" do%>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="col-xs-8">
+      <div class="col-xs-12 col-sm-8">
         <% @papers.each_with_index do |paper, index| %>
         <div class='product'>
           <div class="product-body">

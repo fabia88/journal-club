@@ -55,12 +55,12 @@
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-journal-item hidden-md hidden-lg">
     <div class="dropdown">
-      <i id="icon-dropdown" class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <i id="icon-dropdown" class="fa fa-bars dropdown-toggle fa-2x" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-journal-dropdown-menu">
         <% if user_signed_in? %>
         <li><%= link_to t(".profile", default: "Home"), root_path %></li>
         <li><%= link_to t(".profile", default: "Profile"), user_path(current_user) %></li>
-        <li><%= link_to "My feed", "#", class: "navbar-journal-item navbar-journal-link" %></li>
+        <li><%= link_to "My feed", papers_path, class: "navbar-journal-item navbar-journal-link" %></li>
         <li><%= link_to "My labs", labs_path, class: "navbar-journal-item navbar-journal-link" %></li>
         <li><%= link_to t(".sign_out", default: "Log out"), destroy_user_session_path, method: :delete %></li>
         <% else %>
