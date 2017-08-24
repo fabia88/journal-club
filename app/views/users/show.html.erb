@@ -11,7 +11,7 @@
         <!-- User avatar -->
         <div>
           <% if @user.avatar? %>
-          <%= cl_image_tag @user.avatar, width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
+          <%= cl_image_tag @user.avatar, width: 150, height: 150, crop: "fill", class: "product-image hidden-xs", alt: "No profile picture" %>
           <% else %>
           <%= cl_image_tag "http://lorempixel.com/300/300/abstract/2/", width: 150, height: 150, class: "product-image hidden-xs", alt: "No profile picture" %>
           <% end %>

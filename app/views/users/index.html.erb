@@ -11,8 +11,8 @@
         <div class='product-body'>
           <h3><%= user.first_name + " " + user.last_name %></h3>
           <p><%= user.email %></p>
-          <p><%= user.job_description %></p>
-          <p><%= user.research_interests %></p>
+          <p><%#= user.job_description %></p>
+          <p><%#= user.research_interests %></p>
           <%= link_to "", user_path(user.id), class: "card-link"%>
               <%#= cl_image_tag user.avatar, width: 10, height: 10, class: "card-user hidden-xs", alt: "No profile picture" %>
         </div>

@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_one :author, dependent: :destroy
   has_many :papers, through: :author
 
-  has_many :posts
-  has_many :reviews
+  has_many :posts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
   validate :no_blank_search_keywords
