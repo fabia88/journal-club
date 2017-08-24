@@ -6,6 +6,7 @@
     </div>
 
     <% @labs.each do |lab| %>
+    <% if !lab.archived? %>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="product">
         <div class='product-body'>
@@ -17,9 +18,10 @@
       </div>
     </div>
     <% end %>
+    <% end %>
 
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <% if !current_user.joined_labs.first %>
+      <% if !current_user.joined_labs.first || current_user.joined_labs.select { |lab| lab.archived? } == current_user.joined_labs %>
       <div class="no-lab-card">
         <div class="content">
           <div class="left">
