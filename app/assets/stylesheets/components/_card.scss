@@ -89,6 +89,7 @@
   z-index: 2;
   background: $black;
   opacity: 0;
+  transition: opacity 0.4s ease;
 }
 .card-link:hover {
   opacity: 0.1;

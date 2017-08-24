@@ -61,9 +61,13 @@ class MembershipsController < ApplicationController
   end
 
   def cancel
-    # if user_id = params[:user_id]
+    if user_id = params[:user_id]
+      @lab = Lab.find(params[:id])
+      @membership = @lab.memberships.find_by_user_id(user_id)
+    else
       @membership = Membership.find(params[:id])
-    # end
+    end
+
     @membership.status = "cancelled"
     @lab = @membership.lab
     if @membership.save
