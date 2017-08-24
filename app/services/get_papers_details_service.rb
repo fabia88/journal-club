@@ -1,23 +1,25 @@
-class GetPaperDetailsService
+class GetPapersDetailsService
   require "open-uri"
   require "nokogiri"
   require "json"
 
-  def initialize(paper_id)
-    @paper_id = paper_id
+  def initialize(papers_ids)
+    @papers_ids = papers_ids
   end
 
-  # returns one hash
+  # returns array of hashes
   def call
-    details = get_details(@paper_id)
-    sleep 1
-    abstract_doi = get_abstract_and_doi(@paper_id)
-    sleep 1
-    return details.merge(abstract_doi)
+    @papers = @papers_ids.map do |paper_id|
+      details = get_details(paper_id)
+      sleep 1
+      abstract_doi = get_abstract_and_doi(paper_id)
+      sleep 1
+      details.merge(abstract_doi)
+    end
+    @papers
   end
 
   private
-
   def get_details(paper_id)
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=#{paper_id}&retmode=json&tool=journal_link&email=fabia.moroni@gmail.com"
     paper_data = JSON.parse(open(url).read)

@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
+    <% if current_user.search_keywords.empty? %>
+    <div class="col-xs-12">
+      <h3 class="text-center">Set your search criteria in your profile</h3>
+    </div>
+    <% else %>
     <div class="col-xs-4">
       <div class="card-search">
-      <h3>Refine your search</h3>
+        <h3>Refine your search</h3>
         <%= form_tag papers_path, method: :get, class: "form-group" do%>
         <% current_user.search_keywords.each do |word| %>
         <label for="checkbox"><input class="form-controll" type="checkbox" id="checkbox" name="keywords[]" value="<%= word %>" <%='checked' if @keywords.include?(word) %>
@@ -23,6 +28,9 @@
       </div>
 
       <div class="col-xs-8">
+        <% if @papers.empty? %>
+        <h3 class="text-center">No results</h3>
+        <% else %>
         <% @papers.each_with_index do |paper, index| %>
         <div class='product'>
           <div class="product-body">
@@ -40,10 +48,10 @@
             <%= link_to "Go to paper", paper_path(paper) %>
           </div>
         </div>
-
-
+        <% end %>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 
