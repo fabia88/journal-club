@@ -7,11 +7,7 @@ class ImportNewPapersService
     papers_ids = GetPapersIdsService.new(@number_of_papers).call
 
     papers_ids.each do |paper_id|
-      # puts "Importing paper #{paper_id}"
       paper_details = GetPaperDetailsService.new(paper_id).call
-
-      # puts "Paper details:"
-      # p paper_details
       CreatePaperService.new(paper_details).call
     end
 
