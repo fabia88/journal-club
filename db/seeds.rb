@@ -2,9 +2,11 @@
 # my_info = "&tool=journal-link&email=rebekka.haley@gmail.com"
 
 puts "Destroying previous records..."
+Lab.destroy_all
 Paper.destroy_all
 Author.destroy_all
 PaperAuthor.destroy_all
+Post.destroy_all
 User.destroy_all
 
   # users

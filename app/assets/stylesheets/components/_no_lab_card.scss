@@ -1,0 +1,21 @@
+
+.no-lab-card {
+    background-color: $light-gray;
+    padding: 50px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px rgba(1, 1, 1, 0.2);
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  .content {
+    font-size: 24px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .right img {
+      width: 150px;
+    }
+  }
+}

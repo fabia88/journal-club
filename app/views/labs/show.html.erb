@@ -4,19 +4,18 @@
       <h2><%= @lab.name %></h2>
     </div>
     <!-- Left -->
-    <div class="col-xs-12 col-sm-4">
-      <div class="product-top color-body">
-        <h3>Lab memberships</h3>
-        <% if current_user == @lab.creator %>
+    <div class="col-xs-12 col-sm-4>
+      <div class="product-body">
+        <h2>Lab memberships</h2>
         <%= link_to "Invite a user", new_lab_membership_path(@lab) %>
-        <% end %>
       </div>
+
       <% @available_members.each do |membership| %>
       <!-- Membership user profile picture -->
       <% if membership.status == "accepted" %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
-        <div class='product-body'>
+        <div class='product-body red'>
           <%= render "labs/member_info", membership: membership %>
           <% if current_user == @lab.creator %>
           <% unless membership.user == current_user %>
@@ -25,37 +24,41 @@
           <% end %>
         </div>
       </div>
-      <% elsif membership.status == "pending" %>
-      <% if current_user == @lab.creator || membership.user  %>
-      <div class="product">
-        <%= render "labs/member_profile_picture", membership: membership %>
-        <div class='product-body'>
-          <%= render "labs/member_info", membership: membership %>
-          <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
-          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
-        </div>
-      </div>
+
+
       <% elsif current_user == membership.user %>
-      <%= render "labs/member_profile_picture", membership: membership %>
       <div class="product">
-        <%= render "labs/member_info", membership: membership %>
+        <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
-          <p>
-            <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
-            <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
-          </p>
+        <%= render "labs/member_info", membership: membership %>
+          <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+          <div class='product-body red deny'>
+          <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
+          </div>
         </div>
       </div>
-      <% end %>
+
+      <% elsif membership.status == "pending" %>
+      <div class="product">
+        <%= render "labs/member_profile_picture", membership: membership %>
+        <div class='product-body red'>
+          <%= render "labs/member_info", membership: membership %>
+          <%#= link_to "Accept", accept_membership_path(membership), method: "patch" %>
+          <% if current_user == @lab.creator %>
+          <%= link_to "Cancel", cancel_membership_path(membership), method: "patch" %>
+          <% end %>
+        </div>
+      </div>
+
       <% else %>
-      <% if current_user == @lab.creator || membership.user %>
+      <%# if current_user == @lab.creator || membership.user %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
           <%= render "labs/member_info", membership: membership %>
         </div>
       </div>
-      <% end %>
+      <%# end %>
       <% end %>
       <% end %>
     </div>
@@ -72,10 +75,12 @@
         <ul class="list-inline padded">
           <!-- Conditional for "Archive lab" -->
           <% if current_user.created_labs.include?(@lab) %>
-          <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
+            <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
           <% end %>
-          <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
-          <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+            <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
+          <%# if current_user == @only_accepted %>
+            <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+          <%# end %>
         </ul>
       </div>
       <!-- Lab description -->
@@ -109,7 +114,7 @@
           <% end %>
           <div class="message-name">
             <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
-            <!-- <p><%= post.created_at %></p> -->
+            <p><%= post.created_at.strftime("%b %d, %H:%M") %></p>
           </div>
           <div class="message-body">
             <p><%= post.content %></p>

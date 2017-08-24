@@ -1,7 +1,7 @@
 class GetPapersIdsService
   require "open-uri"
   require "json"
-  def initialize(number_of_papers = 3000)
+  def initialize(number_of_papers = 4000)
     @number_of_papers = number_of_papers
   end
 
