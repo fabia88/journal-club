@@ -9,8 +9,6 @@ class Paper < ApplicationRecord
 
     is_user_not_already_author = self.authors.all? { user.author != author }
 
-
-
     user_author_name = "#{user.last_name}"
     matching_names = author.name.include?(user_author_name)
 

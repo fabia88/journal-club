@@ -73,10 +73,12 @@
         <ul class="list-inline padded">
           <!-- Conditional for "Archive lab" -->
           <% if current_user.created_labs.include?(@lab) %>
-          <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
+            <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
           <% end %>
-          <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
-          <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+            <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
+          <%# if current_user == @only_accepted %>
+            <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+          <%# end %>
         </ul>
       </div>
       <!-- Lab description -->
@@ -110,7 +112,7 @@
           <% end %>
           <div class="message-name">
             <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
-            <!-- <p><%= post.created_at %></p> -->
+            <p><%= post.created_at.strftime("%b %d, %H:%M") %></p>
           </div>
           <div class="message-body">
             <p><%= post.content %></p>

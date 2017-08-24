@@ -7,4 +7,5 @@ class Membership < ApplicationRecord
 
   scope :not_cancelled, -> { where.not(status: "cancelled") }
   scope :accepted_members, -> { where(status: ["accepted", "pending"]) }
+  # scope :only_accepted_members, -> {where(status: "accepted") }
 end
