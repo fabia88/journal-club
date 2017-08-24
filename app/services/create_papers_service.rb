@@ -5,7 +5,7 @@ class CreatePapersService
 
   def call
     @papers_details.each do |paper_details|
-      next if Paper.find_by_paper_id(paper_details[:paper_id])
+      next if Paper.where(paper_id: paper_details[:paper_id]).exists?
 
       authors = paper_details.delete(:authors)
       paper_obj = Paper.create!(paper_details)
