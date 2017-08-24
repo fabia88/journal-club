@@ -29,6 +29,9 @@ gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
 
 group :development, :test do
   gem 'pry-byebug'
