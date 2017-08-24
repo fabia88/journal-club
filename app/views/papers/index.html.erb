@@ -5,7 +5,7 @@
       <h3 class="text-center">Set your search criteria in your profile</h3>
     </div>
     <% else %>
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-sm-4">
       <div class="card-search">
         <h3>Refine your search</h3>
         <%= form_tag papers_path, method: :get, class: "form-group" do%>
@@ -26,8 +26,7 @@
           <% end %>
         </div>
       </div>
-
-      <div class="col-xs-8">
+      <div class="col-xs-12 col-sm-8">
         <% if @papers.empty? %>
         <h3 class="text-center">No results</h3>
         <% else %>

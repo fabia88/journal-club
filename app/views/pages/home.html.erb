@@ -2,51 +2,71 @@
 <div class="banner" style="background-image: linear-gradient(0deg, rgba(225, 225, 225, 0.5) 0%, rgba(0, 0, 0, 0.5) 50%), url('https://static.pexels.com/photos/371954/pexels-photo-371954.jpeg');">
   <div class="banner-content">
     <% if current_user %>
-    <h1>Welcome back, <%= current_user.first_name.capitalize %>.</h1>
-    <%= link_to "Browse your feed", papers_path, class: "btn btn-primary btn-lg button-lg" %>
+    <h1>Welcome, <%= current_user.first_name %>.</h1>
+    <%= link_to "Browse your feed", papers_path, class: "btn btn-transparent btn-lg" %>
     <% else%>
     <h1>Journal Link</h1>
-    <p>Keep up with the latest news in your field</p>
-    <%= link_to t(".sign_in", default: "Signup"), new_user_registration_path, class: "btn btn-primary btn-lg button-lg" %>
+    <p>Your link to the latest news in your field</p>
+    <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-transparent" %>
     <% end %>
   </div>
 </div>
 <!-- Extra information -->
-<div class="padded-home text-center">
+<div class="home-wrapper-padded text-center">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="col-xs-12">
         <h4 id="home-info-title">Wasting time searching for papers?</h4>
-        <h4>Journal Link will bring them to you!</h4>
+        <h4>We'll bring them to you!</h4>
       </div>
     </div>
   </div>
 </div>
-<div class="padded-home text-center">
+<!-- Row 1 -->
+<div class="home-wrapper-padded">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-sm-6">
         <div id="home-info-left">
-          <h4 id="home-info-sub-header">Personalise your feed</h4>
-          <p>Set search <em>keywords</em>, refine with <em>filters</em> and browse your own research feed.</p>
+          <div>
+            <h4 id="home-info-sub-header">Personalise your feed</h4>
+            <p>Set search <em class="em-yellow">keywords</em>, refine with <em class="em-yellow">filters</em> and browse your own research feed.</p>
+          </div>
+          <div>
+            <% if current_user %>
+            <%= link_to "Continue", papers_path, class: "btn btn-yellow btn-lg" %>
+            <% else%>
+            <%= link_to t(".sign_in", default: "Continue"), new_user_registration_path, class: "btn btn-yellow btn-lg" %>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="col-xs-12 col-md-6">
-        <div id="home-info-right"><%= image_tag("home1.jpg", :height => 350) %></div>
+      <div class="col-xs-12 col-sm-6 hidden-xs">
+        <div id="home-info-right"><%= image_tag("home1.jpg", height: 300, class: "image-box-shadow") %></div>
       </div>
     </div>
   </div>
 </div>
-<div class="padded-home text-center">
+<!-- Row 2 -->
+<div class="home-wrapper-padded">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <div id="home-info-left"><%= image_tag("home2.jpg", :height => 350) %></div>
+      <div class="col-xs-12 col-sm-6 hidden-xs">
+        <div id="home-info-left"><%= image_tag("home2.jpg", height: 300, class: "image-box-shadow") %></div>
       </div>
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-sm-6">
         <div id="home-info-right">
-          <h4 id="home-info-sub-header">Share with your lab</h4>
-          <p>Found a useful paper? Use the <em>lab feature</em> to share with your team.</p>
+          <div>
+            <h4 id="home-info-sub-header">Share with your lab</h4>
+            <p>Found a useful paper? Use the <em class="em-yellow">lab feature</em> to share with your team.</p>
+          </div>
+          <div>
+            <% if current_user %>
+            <%= link_to "Continue", labs_path, class: "btn btn-yellow btn-lg" %>
+            <% else%>
+            <%= link_to t(".sign_in", default: "Continue"), new_user_registration_path, class: "btn btn-yellow btn-lg" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

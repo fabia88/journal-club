@@ -1,5 +1,5 @@
 // Specific CSS for your home-page
-.padded-home {
+.home-wrapper-padded {
   padding: 100px 0;
   h4 {
     font-size: 35px;
@@ -8,11 +8,9 @@
     line-height: 35px;
     font-size: 20px;
   }
-  img {
-    border-radius: 5px;
-  }
 }
 
+// CSS IDs for below the banner
 #home-info-title {
   font-size: 46px;
   color: $dark-gray;
@@ -25,4 +23,12 @@
 }
 #home-info-right {
   text-align: right;
+}
+
+// CSS Classestext-specific
+.em-yellow {
+  color: $yellow;
+}
+.image-box-shadow {
+  box-shadow: 0px 0px 60px rgba(1,1,1,0.2);
 }

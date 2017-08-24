@@ -1,8 +1,3 @@
-.button-lg {
-  padding: 18px 35px;
-  border-radius: 5px;
-}
-
 .button {
   border-radius: 5px;
 }
@@ -13,12 +8,35 @@
   font-size: 50px;
 }
 
-.button-blue {
-  background-color: $blue;
+.btn-transparent {
+  font-size: 23px;
+  margin: 20px 0;
+  padding: 18px 35px;
   color: $white;
-  font-weight: 600;
-  padding: 5px;
-  border-radius: 2px;
+  background-color: transparent;
+  border-radius: 300px;
+  border: 2px solid $white;
+  box-shadow: none;
+  &:hover{
+    color: $yellow;
+    background-color: $white;
+    transition: all 0.30s ease ;
+  }
+}
+
+.btn-yellow {
+  margin: 20px 0;
+  padding: 18px 35px;
+  color: $yellow;
+  background-color: transparent;
+  border-radius: 300px;
+  border: 2px solid $yellow;
+  box-shadow: none;
+  &:hover{
+    color: $white;
+    background-color: $yellow;
+    transition: all 0.30s ease ;
+  }
 }
 
 .button-brand-blue {
