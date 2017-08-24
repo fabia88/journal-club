@@ -13,7 +13,9 @@
         <label for="checkbox"><input class="form-controll" type="checkbox" id="checkbox" name="keywords[]" value="<%= word %>" <%='checked' if @keywords.include?(word) %>
           ><%= " " + word.capitalize %></label><br>
           <% end %>
-          <input class="form-controll" type="date" name="date" value="<%= params[:date] %>">
+          <div id="sandbox-container">
+            <input type="text" class="form-control" name="date" value="<%= params[:date] %>">
+          </div>
           <select name="source" id="">
             <option value="">All sources</option>
             <% @sources.each do |source| %>
@@ -53,5 +55,12 @@
       <% end %>
     </div>
   </div>
-
+  <%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('#sandbox-container input').datepicker({
+      });
+    });
+  </script>
+  <% end %>
 
