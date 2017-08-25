@@ -16,15 +16,16 @@
           <%= f.input :avatar %>
           <%= f.input :avatar_cache, as: :hidden %>
           <!-- Search keywords -->
-          <p><strong>Search Keywords</strong></p>
+          <p class="keyword-title"><strong>Search Keywords</strong></p>
           <div id="search-keywords">
             <% @user.search_keywords.each do |search_keyword| %>
-            <div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><button class="js-remove-search-keyword-div btn btn-primary button">Remove</button></div>
+            <div class="js-search-keyword-wrapper"><input class="form-control" type="text" name="user[search_keywords][]" value="<%= search_keyword %>"><a href="#" class="js-remove-search-keyword-div"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+
             <% end %>
           </div>
         </div>
         <!-- Form button -->
-        <button id="add-keyword" class="btn btn-primary button">Add keyword field</button>
+        <a href="#" id="add-keyword" >Add keyword</a>
         <!-- Current password -->
         <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
         <%= f.button :submit, class: "btn btn-primary button" %>
@@ -37,8 +38,6 @@
       <div>
         <ul class="list-unstyled list-inline">
           <li><%= link_to "Back to profile", user_path(@user.id) %></li>
-          <li><%= link_to "Back to user index", users_path %></li>
-          <li><%= link_to "Back to home", root_path %></li>
         </ul>
       </div>
     </div>
@@ -48,16 +47,13 @@
 <%= content_for(:after_js) do %>
 <script>
   $(document).ready(function(){
-    $("#add-keyword").click(function(){
-      div_html = '<div class="js-search-keyword-wrapper"><input type="text" name="user[search_keywords][]"><button class="btn btn-primary button">Remove</button></div>'
+    $("#add-keyword").click(function(e){
+      e.preventDefault();
+      div_html = '<div class="js-search-keyword-wrapper"><input class="form-control" type="text" name="user[search_keywords][]"><a class="js-remove-search-keyword-div"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>'
       $("#search-keywords").append(div_html);
-      $("#search-keywords").on('click', '.js-search-keyword-wrapper button' ,function(){
-        $div = $(this).parent();
-        $div.remove();
-      });
     });
-
-    $(".js-remove-search-keyword-div").click(function(){
+    $("#search-keywords").on('click', '.js-remove-search-keyword-div' ,function(e){
+      e.preventDefault();
       $div = $(this).parent();
       $div.remove();
     });

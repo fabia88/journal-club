@@ -1,6 +1,23 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 100px;
+}
+
+.pages-home {
+  padding-top: 0;
+}
+
+.padded-button {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
 .padded {
   padding: 20px 0;
+  padding-left: 20px;
 }
 
 .avatar-padding {
@@ -9,8 +26,4 @@
 
 .color-body {
   color: $gray;
-}
-
-.spaced {
-
 }

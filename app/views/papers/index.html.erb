@@ -33,9 +33,11 @@
         <h3 class="text-center">No results</h3>
         <% else %>
         <% @papers.each_with_index do |paper, index| %>
-        <div class='product'>
-          <div class="product-body">
+        <div class='paper'>
+          <div class="paper-body">
+          <%= link_to paper_path(paper), class: "paper-title" do %>
             <h3><%= paper.title %></h3>
+            <% end %>
             <ul class="list-inline">
               <% paper.authors.each_with_index do |author, index| %>
               <% if index.even? %>
@@ -46,7 +48,7 @@
               <% end %>
             </ul>
             <p class="date"><%= paper.date %> | <%= paper.source %> | doi: <%= paper.reference %></p>
-            <%= link_to "Go to paper", paper_path(paper) %>
+            <%= link_to "Go to paper", paper_path(paper), class: "paper-link" %>
           </div>
         </div>
         <% end %>
