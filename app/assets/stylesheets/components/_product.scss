@@ -108,16 +108,27 @@
 .product-body a {
   text-decoration: none;
   padding: 5px 30px;
-  background-color: $blue;
-  color: $white;
+  color: $blue;
+  opacity: 0.5;
   font-weight: 600;
   border-radius: 2px;
   margin-top: 5px;
   text-align: center;
+  &:hover {
+    opacity: 1;
+    color: $blue;
+    transition: all 0.30s ease;
+  }
 }
 .product-body.red {
   a {
-    background-color: $red;
+    color: $red;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      color: $red;
+      transition: all 0.30s ease;
+    }
   }
 }
 .product-body.deny{
@@ -205,4 +216,18 @@
 }
 .product-upvote:hover .product-arrow {
   border-bottom: 9px solid $blue;
+}
+
+// Product Link
+.product-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: rgba(1, 1, 1, 0);
+  &:hover {
+    background: rgba(1, 1, 1, 0.1);
+  }
 }
