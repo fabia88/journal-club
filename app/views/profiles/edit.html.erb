@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <!-- Form title-->
       <div class="card-form">
-        <h2>Edit User Profile</h2>
+        <h2>Edit Profile</h2>
         <!-- Form body -->
         <div class="form-group">
           <%= simple_form_for(@user, url: profile_path) do |f| %>
@@ -28,7 +28,7 @@
         <a href="#" id="add-keyword" >Add keyword</a>
         <!-- Current password -->
         <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true %>
-        <%= f.button :submit, class: "btn btn-primary button" %>
+        <%= f.button :submit, value: "Update profile", class: "btn btn-yellow-inverted button" %>
         <% end %>
       </div>
       <!-- Delete profile -->
