@@ -13,7 +13,7 @@
           <h3><%= lab.name.capitalize %> <% if lab.creator == current_user %>(Creator)<% end %></h3>
           <p>Lab status: <strong><% if !lab.archived? %> active <% else %> archived <% end %></strong></p>
           <p>Membership status: <strong><%= current_user.memberships.find_by_lab_id(lab.id).status %></strong></p>
-          <%= link_to "", lab_path(lab), class: "card-link" %>
+          <%= link_to "", lab_path(lab), class: "product-link" %>
         </div>
       </div>
     </div>
@@ -24,24 +24,21 @@
       <% if !current_user.joined_labs.first || current_user.joined_labs.select { |lab| lab.archived? } == current_user.joined_labs %>
       <div class="no-lab-card">
         <div class="content">
-          <div class="left">
+          <div>
             <p>Looks like you aren't in any labs.</p>
             <p>Would you like to create one?</p>
+            <%= link_to new_lab_path, class: "btn-yellow-inverted" do %>
+            <i class="fa fa-check"></i>
+            Create a Lab
+            <% end %>
           </div>
-          <div class="right">
-
+          <div>
             <%= image_tag 'lab.svg' %>
           </div>
         </div>
-        <%= link_to new_lab_path, class: "button-brand-blue" do %>
-        <i class="fa fa-check"></i>
-        Create a Lab
-        <% end %>
       </div>
       <% end %>
     </div>
 
   </div>
 </div>
-
-<!-- more padding, hover not black -->

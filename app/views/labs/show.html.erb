@@ -5,9 +5,6 @@
     </div>
     <!-- Left -->
     <div class="col-xs-12 col-md-6 col-lg-4">
-      <div class="product-body">
-        <%= link_to "Invite a member", new_lab_membership_path(@lab) %>
-      </div>
 
       <% @available_members.each do |membership| %>
       <!-- Membership user profile picture -->
@@ -24,15 +21,14 @@
         </div>
       </div>
 
-
       <% elsif current_user == membership.user %>
       <div class="product">
         <%= render "labs/member_profile_picture", membership: membership %>
         <div class='product-body'>
-        <%= render "labs/member_info", membership: membership %>
+          <%= render "labs/member_info", membership: membership %>
           <%= link_to "Accept", accept_membership_path(membership), method: "patch" %>
           <div class='product-body red deny'>
-          <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
+            <%= link_to "Deny", deny_membership_path(membership), method: "patch" %>
           </div>
         </div>
       </div>
@@ -68,20 +64,24 @@
       <% if @lab.photo? %>
 
       <div class="banner banner-40vh" style="background-image: url(<%= cl_image_path @lab.photo, height: 300, width: 400, alt: "Lab photo" ; %>);">
-      <!-- crop: :fill removed for demo -->
+        <!-- crop: :fill removed for demo -->
 
       </div>
       <% end %>
       <!-- Lab links -->
       <div class="product-body a">
         <ul class="list-inline padded">
+          <!-- Invite a member -->
+          <li>
+            <%= link_to "Invite a member", new_lab_membership_path(@lab) %>
+          </li>
           <!-- Conditional for "Archive lab" -->
           <% if current_user.created_labs.include?(@lab) %>
-            <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
+          <li><%= link_to "Archive lab", archive_lab_path(@lab), method: :patch, data: { confirm: "Are you sure?" } %></li>
           <% end %>
-            <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
+          <li><%= link_to "Edit lab", edit_lab_path(@lab) %></li>
           <%# if current_user == @only_accepted %>
-            <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch" %></li>
+          <li><%= link_to "Leave lab", cancel_membership_path(user_id: current_user.id), method: "patch", data: { confirm: "Are you sure?" } %></li>
           <%# end %>
         </ul>
       </div>
@@ -99,13 +99,19 @@
           <h3>New Post</h3>
           <%= simple_form_for([@lab, @post]) do |f|%>
           <%= f.input :content, class: "form-control" %>
-          <%= f.button :submit, class: "btn btn-primary button" %>
+          <%= f.button :submit, class: "btn btn-yellow-inverted" %>
           <% end %>
         </div>
       </div>
       <!-- Index posts -->
       <div>
         <h3 class="padded color-body">Posts</h3>
+        <!-- Conditional if no posts -->
+        <div class="padded color-body">
+          <% if @lab.posts == [] %>
+          <p> Currently no posts, why not say hello to your lab?</p>
+          <% end %>
+        </div>
         <% @lab.posts.sort_by { |post| post.created_at}.reverse.each do |post|%>
         <div class="message">
           <!-- Cloudinary image tags -->
