@@ -1,5 +1,5 @@
 meta_product_name: "Journal Link"
-meta_title: "Journal Link - Customize a research news feed relevant to you"
+meta_title: "Journal Link | Customize a research news feed relevant to you"
 meta_description: "Journal Link is a web app designed to return research papers tailored to your field based on your search keywords."
 meta_image: "cover.png"                       # should exist in `app/assets/images/`
 # twitter_account: "@product_twitter_account"   # required for Twitter Cards
