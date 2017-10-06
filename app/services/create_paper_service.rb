@@ -12,7 +12,6 @@ class CreatePaperService
     authors.each do |author|
       author_obj = Author.find_by_name(author["name"])
       author_obj ||= Author.create!(name: author["name"])
-
       PaperAuthor.create(paper: paper_obj, author: author_obj)
     end
   end
