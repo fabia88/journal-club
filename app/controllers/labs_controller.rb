@@ -12,10 +12,8 @@ class LabsController < ApplicationController
 
   def show
     if current_user
-      # && @lab.if_member?(current_user)
       @post = Post.new
       @available_members = @lab.memberships.accepted_members
-      # @only_accepted = @lab.memberships.only_accepted_members
     else
       redirect_to root_path
       flash[:alert] = "You must be logged in or be part of this lab."

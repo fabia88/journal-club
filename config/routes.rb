@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post :import_papers
     end
   end
+
   resources :users, only: [:index, :show]
 
   resources :papers, only: [:index, :show] do
